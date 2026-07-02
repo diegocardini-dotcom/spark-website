@@ -27,13 +27,11 @@ export const metadata: Metadata = {
     title: 'Spark Digital Agency, Growth infrastructure',
     description:
       'Websites, automation, and AI, all working together. Light up your business.',
-    images: [{ url: '/og.png', width: 1200, height: 630, alt: 'Spark Digital Agency' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Spark Digital Agency',
     description: 'Websites, automation, and AI, all working together.',
-    images: ['/og.png'],
   },
   robots: {
     index: true,
