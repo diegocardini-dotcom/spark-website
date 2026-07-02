@@ -69,7 +69,7 @@ export function ServiceDetail({ service }: { service: SD }) {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: EASE, delay: 0.3 }}
-            className="mt-8 max-w-3xl text-2xl leading-snug text-ink-100 md:text-3xl"
+            className="mt-8 max-w-3xl text-xl leading-snug text-ink-100 md:text-3xl"
           >
             {L(service.lead)}
           </motion.p>
@@ -79,7 +79,7 @@ export function ServiceDetail({ service }: { service: SD }) {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: EASE, delay: 0.45 }}
-            className="mt-8 max-w-2xl text-lg leading-relaxed text-ink-300"
+            className="mt-8 max-w-2xl text-base leading-relaxed text-ink-300 md:text-lg"
           >
             {L(service.intro)}
           </motion.p>

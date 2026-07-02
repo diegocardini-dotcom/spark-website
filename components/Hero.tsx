@@ -141,14 +141,14 @@ export function Hero({ variant = HERO_VARIANT }: { variant?: HeroVariant }) {
           <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-ink-400">
             {t('hero.trustedBy')}
           </p>
-          <div className="mt-5 flex flex-wrap items-center gap-x-6 gap-y-3 md:gap-x-12">
+          <div className="mt-5 flex flex-nowrap items-center gap-x-5 md:gap-x-12">
             {HERO_CLIENTS.map((c, i) => (
               <motion.span
                 key={c}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1.2 + i * 0.08, duration: 0.5 }}
-                className="font-display text-xl tracking-tighter text-ink-200 md:text-3xl"
+                className="whitespace-nowrap font-display text-base tracking-tighter text-ink-200 md:text-3xl"
               >
                 {c}
               </motion.span>
