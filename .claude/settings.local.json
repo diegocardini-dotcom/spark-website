@@ -32,7 +32,19 @@
       "Bash(git add *)",
       "Bash(git commit *)",
       "Bash(git branch *)",
-      "Bash(git remote *)"
+      "Bash(git remote *)",
+      "Bash(git push *)",
+      "mcp__visualize__read_me",
+      "mcp__visualize__show_widget",
+      "Bash(sed -i '' 's|https://sparkdigital.agency/wp-content/uploads/2018/11/FordThumbnail-400x284.jpg|https://picsum.photos/seed/ford/800/600|g' '/Users/diegocardini/Desktop/WORK/SPARK/WORK/SPARK - Redesign/spark/lib/fallbackData.ts')",
+      "Bash(sed -i '' 's|https://sparkdigital.agency/wp-content/uploads/2018/11/imacPro.png|https://picsum.photos/seed/ford2/1200/800|g' '/Users/diegocardini/Desktop/WORK/SPARK/WORK/SPARK - Redesign/spark/lib/fallbackData.ts')",
+      "Bash(sed -i '' 's|https://sparkdigital.agency/wp-content/uploads/2018/11/FordScreens-1.png|https://picsum.photos/seed/ford3/1200/800|g' '/Users/diegocardini/Desktop/WORK/SPARK/WORK/SPARK - Redesign/spark/lib/fallbackData.ts')",
+      "Bash(sed -i '' 's|https://sparkdigital.agency/wp-content/uploads/2018/11/LaJarraThumbnail-400x284.jpg|https://picsum.photos/seed/jarra/800/600|g' '/Users/diegocardini/Desktop/WORK/SPARK/WORK/SPARK - Redesign/spark/lib/fallbackData.ts')",
+      "Bash(sed -i '' 's|https://sparkdigital.agency/wp-content/uploads/2018/11/LaJarraMockup.png|https://picsum.photos/seed/jarra2/1200/800|g' '/Users/diegocardini/Desktop/WORK/SPARK/WORK/SPARK - Redesign/spark/lib/fallbackData.ts')",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" \"https://web.archive.org/web/2018/https://sparkdigital.agency/wp-content/uploads/2018/11/FordThumbnail-400x284.jpg\")",
+      "Bash(curl -sL \"https://sparkdigital.agency/\")",
+      "Bash(cat)",
+      "Bash(python3 /tmp/mkog.py)"
     ]
   }
 }
