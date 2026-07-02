@@ -1,0 +1,82 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700&family=Instrument+Serif&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  --bg:    #0a0a0b;
+  --ink:   #e6e6ec;
+  --muted: #8a8a96;
+  --line:  rgba(255,255,255,0.08);
+  --ember: #F8D347;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Inter', system-ui, sans-serif;
+  font-feature-settings: 'ss01', 'cv11';
+}
+
+::selection {
+  background: rgba(248,211,71,0.35);
+  color: #fff;
+}
+
+/* fine grid backdrop */
+.bg-grid {
+  background-image:
+    linear-gradient(to right, rgba(255,255,255,0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,0.035) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse at 50% 0%, #000 30%, transparent 75%);
+}
+
+/* hairline divider */
+.hairline {
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(255,255,255,0.12), transparent);
+}
+
+/* The "spark" — used under section eyebrows */
+.spark-line {
+  position: relative;
+  display: inline-block;
+  width: 36px;
+  height: 1px;
+  background: var(--muted);
+  vertical-align: middle;
+  margin-right: 14px;
+}
+.spark-line::after {
+  content: '';
+  position: absolute;
+  right: -3px; top: 50%;
+  width: 6px; height: 6px;
+  border-radius: 9999px;
+  background: var(--ember);
+  transform: translateY(-50%);
+  box-shadow: 0 0 12px rgba(248,211,71,0.7);
+}
+
+/* focus rings — accessibility */
+:focus-visible {
+  outline: 2px solid var(--ember);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

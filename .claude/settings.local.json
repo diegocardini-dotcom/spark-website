@@ -1,0 +1,38 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -s -o \"/private/tmp/claude-501/-Users-diegocardini-Desktop-WORK-SPARK-WORK-SPARK---Redesign-spark/7019cc5d-9a22-49d2-ba30-4ea89f29aea7/scratchpad/spark-logo.png\" \"https://sparkdigital.agency/wp-content/uploads/2020/06/Logo-1.png\")",
+      "Bash(python3)",
+      "Bash(curl -sS http://localhost:3000/logo-lab -m 10)",
+      "Bash(curl -sS -o /dev/null -w \"HTTP %{http_code}\\\\n\" http://localhost:3000/logo-lab -m 10)",
+      "Bash(curl -sS -o /dev/null -w \"HTTP %{http_code}\\\\n\" http://localhost:3000/logo-lab -m 12)",
+      "Bash(brew install *)",
+      "Bash(curl -sS -o /dev/null -w \"HTTP %{http_code}\\\\n\" http://localhost:3000/ -m 15)",
+      "Bash(curl -sS -o /dev/null -w \"/ → %{http_code}\\\\n\" http://localhost:3000/ -m 15)",
+      "Bash(curl -sS -o /dev/null -w \"/logo-lab → %{http_code}\\\\n\" http://localhost:3000/logo-lab -m 15)",
+      "Bash(curl -sS -o /dev/null -w \"/ → %{http_code}\\\\n\" http://localhost:3000/ -m 20)",
+      "Bash(tail -30 /tmp/spark-dev.log 2>/dev/null | grep -iE \"error|warn|fail\" | head -10 || echo \"no errors in log\")",
+      "Bash(npx skills *)",
+      "Bash(ls ~/.agents/skills/impeccable/ 2>&1)",
+      "Bash(node ~/.agents/skills/impeccable/scripts/context.mjs)",
+      "Bash(node ~/.agents/skills/impeccable/scripts/detect-csp.mjs)",
+      "Bash(mkdir -p \"/Users/diegocardini/Desktop/WORK/SPARK/WORK/SPARK - Redesign/spark/app/work/[slug]\")",
+      "Bash(curl -sS -o /dev/null -w '/ → %{http_code}\\\\n/work/taxi-to-peru → %{http_code}\\\\n/work/go-further-ford → %{http_code}\\\\n' http://localhost:3000/ http://localhost:3000/work/taxi-to-peru http://localhost:3000/work/go-further-ford -m 25)",
+      "Bash(/usr/bin/curl -sS -o /dev/null -w \"/ → %{http_code}\\\\n\" http://localhost:3000/ -m 20)",
+      "Bash(/usr/bin/curl -sS -o /dev/null -w \"/work/taxi-to-peru → %{http_code}\\\\n\" http://localhost:3000/work/taxi-to-peru -m 20)",
+      "Bash(/usr/bin/curl -sS -o /dev/null -w \"/work/go-further-ford → %{http_code}\\\\n\" http://localhost:3000/work/go-further-ford -m 20)",
+      "Bash(/usr/bin/curl -sS -o /dev/null -w \"/logo-lab → %{http_code}\\\\n\" http://localhost:3000/logo-lab -m 20)",
+      "WebFetch(domain:sparkdigital.agency)",
+      "WebFetch(domain:cdn.21st.dev)",
+      "Bash(/usr/bin/curl -sI \"https://images.unsplash.com/photo-1518709268805-4e9042af2176?auto=format&fit=crop&w=1800&q=80\" -m 10)",
+      "Bash(/usr/bin/tail -50 /tmp/spark-dev.log)",
+      "Bash(npm run *)",
+      "Bash(echo \"PID: $!\")",
+      "Bash(git init *)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git branch *)",
+      "Bash(git remote *)"
+    ]
+  }
+}
