@@ -47,6 +47,7 @@ export const TRANSLATIONS = {
     label4: { en: 'Owned by clients',    es: 'Propiedad del cliente' },
     suffix3:{ en: 'yr',                  es: 'años' },
     selectedClients: { en: 'Selected clients', es: 'Clientes seleccionados' },
+    clientsTagline: { en: 'From global brands to founder-led teams.', es: 'De marcas globales a equipos fundadores.' },
   },
 
   /* ─────────── SERVICES ─────────── */

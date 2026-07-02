@@ -62,7 +62,7 @@ export function Clients() {
               {t('metrics.selectedClients')}
             </p>
             <h3 className="mt-4 font-display text-2xl leading-tight tracking-tighter text-ink-50 md:text-3xl">
-              From global brands to founder-led teams.
+              {t('metrics.clientsTagline')}
             </h3>
           </div>
 
@@ -71,7 +71,7 @@ export function Clients() {
               <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-ink-950 to-transparent" />
               <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-ink-950 to-transparent" />
 
-              <div className="flex items-center gap-16 whitespace-nowrap [animation:scroll_48s_linear_infinite] hover:[animation-play-state:paused] md:gap-24">
+              <div className="flex items-center gap-16 whitespace-nowrap [animation:scroll_28s_linear_infinite] hover:[animation-play-state:paused] md:gap-24 md:[animation-duration:48s]">
                 {[...CLIENTS, ...CLIENTS].map((logo, i) => (
                   <div
                     key={`${logo.name}-${i}`}

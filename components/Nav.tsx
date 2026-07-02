@@ -47,7 +47,9 @@ export function Nav() {
     <header
       className={clsx(
         'fixed inset-x-0 top-0 z-50 transition-all duration-500',
-        scrolled
+        open
+          ? 'border-b border-white/[0.06] bg-ink-950'
+          : scrolled
           ? 'border-b border-white/[0.06] bg-ink-950/70 backdrop-blur-xl backdrop-saturate-150'
           : 'border-b border-transparent bg-transparent',
       )}
@@ -177,7 +179,7 @@ export function Nav() {
                   </svg>
                 </Link>
                 <p className="text-center font-mono text-[10px] uppercase tracking-[0.28em] text-ink-500">
-                  hello@spark.agency
+                  hello@sparkdigital.agency
                 </p>
               </motion.div>
             </Container>
