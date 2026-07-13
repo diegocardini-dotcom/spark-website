@@ -43,7 +43,7 @@ export function Clients() {
           {metrics.map((m) => (
             <div key={m.label} className="group">
               <p className="font-display text-5xl tracking-tighter text-ember md:text-6xl">
-                <CountUp to={m.v} suffix={m.suffix} prefix={m.prefix} />
+                <CountUp to={m.v} suffix={m.suffix} />
               </p>
               <p className="mt-3 max-w-[12rem] text-xs uppercase tracking-[0.18em] text-ink-300 md:text-sm">
                 {m.label}
