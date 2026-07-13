@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   description:
     'Spark builds the CRM, automation, and AI systems that scale your business, without scaling your headcount. Pipelines, funnels, websites, AI agents, SEO.',
   keywords: [
-    'digital agency', 'CRM', 'GoHighLevel', 'AI agents', 'marketing automation',
+    'digital agency', 'CRM', 'Spark CRM', 'AI agents', 'marketing automation',
     'lead generation', 'SEO', 'web development', 'landing pages', 'sales funnels',
   ],
   authors: [{ name: 'Spark Digital Agency' }],

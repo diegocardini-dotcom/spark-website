@@ -40,18 +40,18 @@ export const SERVICES_DETAIL: ServiceDetail[] = [
     slug: 'pipeline',
     num: '01',
     name:   { en: 'Pipeline',            es: 'Pipeline' },
-    kicker: { en: 'CRM + GoHighLevel',   es: 'CRM + GoHighLevel' },
+    kicker: { en: 'Spark CRM',   es: 'Spark CRM' },
     lead: {
       en: 'One source of truth for every lead, every conversation, every deal.',
       es: 'Una sola fuente de verdad para cada lead, conversación y deal.',
     },
     intro: {
-      en: 'Most sales teams do not have a lead leak problem. They have a lead visibility problem. We build a GoHighLevel CRM that captures every touchpoint, routes work to the right person, and shows you where the money is stuck.',
-      es: 'La mayoría de los equipos de ventas no tienen un problema de fuga de leads. Tienen un problema de visibilidad. Construimos un CRM en GoHighLevel que captura cada punto de contacto, distribuye el trabajo a la persona correcta y te muestra dónde está trabada la plata.',
+      en: 'Most sales teams do not have a lead leak problem. They have a lead visibility problem. We build the Spark CRM that captures every touchpoint, routes work to the right person, and shows you where the money is stuck.',
+      es: 'La mayoría de los equipos de ventas no tienen un problema de fuga de leads. Tienen un problema de visibilidad. Construimos el Spark CRM que captura cada punto de contacto, distribuye el trabajo a la persona correcta y te muestra dónde está trabada la plata.',
     },
     includes: {
       en: [
-        'GoHighLevel CRM setup, fully configured for your business',
+        'Spark CRM setup, fully configured for your business',
         'Custom pipeline stages that match how you actually sell',
         'Lead routing rules, ownership and hand-offs defined',
         'Custom fields, tags, and segments for reporting',
@@ -59,7 +59,7 @@ export const SERVICES_DETAIL: ServiceDetail[] = [
         'Team onboarding, training, and playbooks',
       ],
       es: [
-        'Setup completo de GoHighLevel para tu negocio',
+        'Setup completo del Spark CRM para tu negocio',
         'Etapas de pipeline a medida de cómo vendés',
         'Reglas de routing, propiedad y hand-offs definidos',
         'Custom fields, tags y segmentos para reportes',
@@ -85,8 +85,8 @@ export const SERVICES_DETAIL: ServiceDetail[] = [
       {
         title: { en: 'Build',     es: 'Build' },
         body: {
-          en: 'We configure GoHighLevel end to end, import your data, wire up integrations, and stress-test with real leads.',
-          es: 'Configuramos GoHighLevel de punta a punta, importamos tus datos, conectamos integraciones y probamos con leads reales.',
+          en: 'We configure the Spark CRM end to end, import your data, wire up integrations, and stress-test with real leads.',
+          es: 'Configuramos el Spark CRM de punta a punta, importamos tus datos, conectamos integraciones y probamos con leads reales.',
         },
       },
       {
@@ -108,10 +108,10 @@ export const SERVICES_DETAIL: ServiceDetail[] = [
     },
     faq: [
       {
-        q: { en: 'Why GoHighLevel and not HubSpot or Salesforce?', es: '¿Por qué GoHighLevel y no HubSpot o Salesforce?' },
+        q: { en: 'Why your own CRM and not HubSpot or Salesforce?', es: '¿Por qué tu propio CRM y no HubSpot o Salesforce?' },
         a: {
-          en: 'GoHighLevel bundles CRM, automation, SMS, email, calendars, and funnels at a flat monthly cost. For growth-stage teams it is faster to ship and cheaper to own than stitching together three enterprise SaaS tools.',
-          es: 'GoHighLevel combina CRM, automatización, SMS, email, calendarios y funnels a un costo mensual plano. Para equipos en crecimiento es más rápido de implementar y más barato que combinar tres SaaS enterprise.',
+          en: 'Our CRM bundles pipeline, automation, SMS, email, calendars, and funnels in one system. For growth-stage teams it is faster to ship and cheaper to own than stitching together three enterprise SaaS tools.',
+          es: 'Nuestro CRM integra pipeline, automatización, SMS, email, calendarios y funnels en un solo sistema. Para equipos en crecimiento es más rápido de implementar y más barato que combinar tres SaaS enterprise.',
         },
       },
       {
@@ -220,7 +220,7 @@ export const SERVICES_DETAIL: ServiceDetail[] = [
       en: [
         'Custom knowledge base trained on your services and FAQs',
         'Qualification logic that filters serious leads from tire-kickers',
-        'Direct calendar booking via Cal.com or GoHighLevel',
+        'Direct calendar booking, integrated with your existing tools',
         'Lead capture straight into your CRM with full conversation history',
         'Human handoff for complex questions',
         'Ongoing tuning based on real conversations',
@@ -228,7 +228,7 @@ export const SERVICES_DETAIL: ServiceDetail[] = [
       es: [
         'Base de conocimiento personalizada con tus servicios y FAQs',
         'Lógica de calificación que filtra leads serios de curiosos',
-        'Agendamiento directo vía Cal.com o GoHighLevel',
+        'Agendamiento directo, integrado con tus herramientas actuales',
         'Captura de leads directo en tu CRM con el historial completo',
         'Handoff humano para preguntas complejas',
         'Ajuste continuo basado en conversaciones reales',

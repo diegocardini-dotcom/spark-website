@@ -180,8 +180,8 @@ const SERVICES: ServiceDef[] = [
     num: '01',
     Glyph: GlyphPipeline,
     includes: {
-      en: ['GoHighLevel CRM setup', 'Stage architecture & routing', 'Team onboarding'],
-      es: ['Setup CRM GoHighLevel', 'Arquitectura de stages', 'Onboarding del equipo'],
+      en: ['Spark CRM setup', 'Stage architecture & routing', 'Team onboarding'],
+      es: ['Setup del Spark CRM', 'Arquitectura de stages', 'Onboarding del equipo'],
     },
   },
   {

@@ -18,7 +18,9 @@ import { NextResponse } from 'next/server';
 
 const RESEND_API_KEY   = process.env.RESEND_API_KEY;
 const TO_EMAIL         = process.env.CONTACT_TO_EMAIL   || 'hello@sparkdigital.agency';
-const FROM_EMAIL       = process.env.CONTACT_FROM_EMAIL || 'leads@sparkdigital.agency';
+// Resend requires the FROM domain to be verified. Falls back to onboarding@resend.dev,
+// which every Resend account can send from without any DNS setup.
+const FROM_EMAIL       = process.env.CONTACT_FROM_EMAIL || 'onboarding@resend.dev';
 
 type ContactPayload = {
   name?: string;
@@ -95,8 +97,9 @@ export async function POST(req: Request) {
   });
 
   if (!res.ok) {
-    console.error('[contact] Resend error', await res.text());
-    return NextResponse.json({ ok: false, error: 'Send failed' }, { status: 502 });
+    const errText = await res.text();
+    console.error('[contact] Resend error', res.status, errText);
+    return NextResponse.json({ ok: false, error: errText }, { status: 502 });
   }
 
   return NextResponse.json({ ok: true });

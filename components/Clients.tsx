@@ -24,7 +24,7 @@ export function Clients() {
 
   const metrics = [
     { v: 50,  suffix: '+',                          label: t('metrics.label1') },
-    { v: 12,  suffix: 'M+',           prefix: '$',  label: t('metrics.label2') },
+    { v: 200, suffix: '+',                         label: t('metrics.label2') },
     { v: 8,   suffix: ' ' + t('metrics.suffix3'),   label: t('metrics.label3') },
     { v: 100, suffix: '%',                          label: t('metrics.label4') },
   ];
@@ -71,7 +71,7 @@ export function Clients() {
               <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-ink-950 to-transparent" />
               <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-ink-950 to-transparent" />
 
-              <div className="flex items-center gap-16 whitespace-nowrap [animation:scroll_28s_linear_infinite] hover:[animation-play-state:paused] md:gap-24 md:[animation-duration:48s]">
+              <div className="flex items-center gap-16 whitespace-nowrap [animation:scroll_18s_linear_infinite] hover:[animation-play-state:paused] md:gap-24 md:[animation-duration:30s]">
                 {[...CLIENTS, ...CLIENTS].map((logo, i) => (
                   <div
                     key={`${logo.name}-${i}`}

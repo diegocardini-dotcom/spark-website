@@ -42,7 +42,7 @@ export const TRANSLATIONS = {
   /* ─────────── METRICS ─────────── */
   metrics: {
     label1: { en: 'Brands served',       es: 'Marcas atendidas' },
-    label2: { en: 'Revenue influenced',  es: 'Ingresos influenciados' },
+    label2: { en: 'Systems shipped',      es: 'Sistemas entregados' },
     label3: { en: 'Building systems',    es: 'Construyendo sistemas' },
     label4: { en: 'Owned by clients',    es: 'Propiedad del cliente' },
     suffix3:{ en: 'yr',                  es: 'años' },
@@ -63,7 +63,7 @@ export const TRANSLATIONS = {
     items: {
       pipeline:  {
         name:   { en: 'Pipeline',         es: 'Pipeline' },
-        kicker: { en: 'CRM + GoHighLevel', es: 'CRM + GoHighLevel' },
+        kicker: { en: 'Spark CRM', es: 'Spark CRM' },
         blurb:  { en: 'One source of truth. Every lead, every conversation, every deal.',
                   es: 'Una sola fuente de verdad. Cada lead, conversación y deal.' },
       },
