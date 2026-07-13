@@ -44,7 +44,10 @@
       "Bash(curl -s -o /dev/null -w \"%{http_code}\" \"https://web.archive.org/web/2018/https://sparkdigital.agency/wp-content/uploads/2018/11/FordThumbnail-400x284.jpg\")",
       "Bash(curl -sL \"https://sparkdigital.agency/\")",
       "Bash(cat)",
-      "Bash(python3 /tmp/mkog.py)"
+      "Bash(python3 /tmp/mkog.py)",
+      "Bash(curl -sL \"https://sparkdigital.agency/\" -o /tmp/live.html)",
+      "Bash(git -C \"/Users/diegocardini/Desktop/WORK/SPARK/WORK/SPARK - Redesign/spark\" log --oneline -3)",
+      "Bash(npx --yes vercel@latest ls)"
     ]
   }
 }
