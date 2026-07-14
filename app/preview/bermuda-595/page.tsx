@@ -192,18 +192,15 @@ function ProductViewer() {
       </div>
 
       {mode === 'video' ? (
-        /* ── Video — letterboxed, not cropped ── */
+        /* ── Local studio video (white background) ── */
         <div className="w-full rounded-xl overflow-hidden"
           style={{ background: '#000', border: '1px solid rgba(255,255,255,0.06)' }}>
-          <div className="relative w-full" style={{ paddingTop: '56.25%' }}>
-            <iframe
-              className="absolute inset-0 w-full h-full border-0"
-              src="https://www.youtube-nocookie.com/embed/R4e8xw8kHVs?autoplay=1&mute=1&controls=1&rel=0&modestbranding=1&loop=1&playlist=R4e8xw8kHVs"
-              title="Bermuda 595 Cuddy"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            />
-          </div>
+          <video
+            src="/preview/bermuda-595.mp4"
+            autoPlay muted loop playsInline controls
+            className="w-full h-auto block"
+            style={{ maxHeight: '72vh', objectFit: 'contain', background: '#000' }}
+          />
         </div>
       ) : (
         /* ── 360 rotate ── */
@@ -311,7 +308,7 @@ export default function Bermuda595Page() {
             <div className="relative w-full h-full" style={{ maxWidth: 'calc(100vh * 16 / 9)' }}>
               <iframe
                 className="absolute inset-0 w-full h-full border-0"
-                src="https://www.youtube-nocookie.com/embed/R4e8xw8kHVs?autoplay=1&mute=1&controls=0&rel=0&modestbranding=1&loop=1&playlist=R4e8xw8kHVs&start=3"
+                src="https://www.youtube-nocookie.com/embed/R4e8xw8kHVs?autoplay=1&mute=1&controls=0&rel=0&modestbranding=1&loop=1&playlist=R4e8xw8kHVs"
                 title="Bermuda 595 Cuddy"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope"
                 style={{ opacity: 0.7 }}
@@ -321,10 +318,15 @@ export default function Bermuda595Page() {
 
           {/* Gradient overlays */}
           <div className="absolute inset-0 pointer-events-none" style={{
-            background: 'linear-gradient(to bottom, rgba(8,8,8,0.3) 0%, rgba(8,8,8,0) 20%, rgba(8,8,8,0) 55%, rgba(8,8,8,0.8) 80%, rgba(8,8,8,1) 100%)',
+            background: 'linear-gradient(to bottom, rgba(8,8,8,0.35) 0%, rgba(8,8,8,0) 15%, rgba(8,8,8,0) 50%, rgba(8,8,8,0.85) 82%, rgba(8,8,8,1) 100%)',
           }} />
           <div className="absolute inset-0 pointer-events-none" style={{
-            background: 'linear-gradient(to right, rgba(8,8,8,0.5) 0%, transparent 45%)',
+            background: 'linear-gradient(to right, rgba(8,8,8,0.55) 0%, transparent 45%)',
+          }} />
+          {/* Bottom fade to page background — seamless transition */}
+          <div className="absolute inset-x-0 bottom-0 pointer-events-none" style={{
+            height: '18vh',
+            background: 'linear-gradient(to bottom, transparent, #080808)',
           }} />
 
           {/* Content */}
@@ -344,7 +346,7 @@ export default function Bermuda595Page() {
             </p>
 
             {/* Stats */}
-            <div className="reveal d3 mt-10 flex items-center gap-8 pt-8 border-t border-white/8">
+            <div className="reveal d3 mt-10 flex items-center gap-8 pt-8" style={{ borderTop: '1px solid rgba(255,255,255,0.05)' }}>
               {[['150 HP','Potencia'],['55 km/h','Velocidad'],['6','Personas']].map(([v,l]) => (
                 <div key={l}>
                   <p className="text-2xl font-black tracking-tighter">{v}</p>
@@ -356,17 +358,17 @@ export default function Bermuda595Page() {
         </section>
 
         {/* ── TAGLINE ─────────────────────────────────────── */}
-        <section className="max-w-7xl mx-auto px-6 md:px-14 py-24 md:py-36">
-          <div className="reveal md:grid md:grid-cols-12 md:gap-12 items-end">
+        <section className="max-w-7xl mx-auto px-6 md:px-14 py-14 md:py-20">
+          <div className="reveal md:grid md:grid-cols-12 md:gap-12 items-center">
             <div className="md:col-span-7">
               <h2 className="font-black tracking-tighter leading-none text-white/90"
-                style={{ fontSize: 'clamp(2.8rem, 6vw, 5.5rem)' }}>
+                style={{ fontSize: 'clamp(2.4rem, 5vw, 4.5rem)' }}>
                 Desde Tigre<br />
                 <span className="text-white/25">al mundo.</span>
               </h2>
             </div>
-            <div className="md:col-span-5 mt-8 md:mt-0 reveal d2">
-              <p className="text-white/35 leading-relaxed">
+            <div className="md:col-span-5 mt-6 md:mt-0 reveal d2">
+              <p className="text-white/35 leading-relaxed text-sm">
                 Fabricante argentino líder desde 1961. Más de 10.000 embarcaciones entregadas a través de una red exclusiva de concesionarios en todo el país.
               </p>
             </div>
