@@ -299,18 +299,13 @@ export default function Bermuda595Page() {
         {/* ── HERO — YouTube, letterboxed ───────────────── */}
         <section className="relative min-h-[100dvh] flex flex-col justify-end overflow-hidden">
 
-          {/* YouTube — 16:9 centered, fills height, natural aspect ratio */}
-          <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
-            <div className="relative w-full h-full" style={{ maxWidth: 'calc(100vh * 16 / 9)' }}>
-              <iframe
-                className="absolute inset-0 w-full h-full border-0"
-                src="https://www.youtube-nocookie.com/embed/R4e8xw8kHVs?autoplay=1&mute=1&controls=0&rel=0&modestbranding=1&loop=1&playlist=R4e8xw8kHVs"
-                title="Bermuda 595 Cuddy"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope"
-                style={{ opacity: 0.7 }}
-              />
-            </div>
-          </div>
+          {/* Local 1080p video — object-cover, fills any screen */}
+          <video
+            className="absolute inset-0 w-full h-full border-0"
+            src="/preview/bermuda-hero.mp4"
+            autoPlay muted loop playsInline
+            style={{ objectFit: 'cover', objectPosition: 'center', opacity: 0.75 }}
+          />
 
           {/* Gradient overlays */}
           <div className="absolute inset-0 pointer-events-none" style={{
