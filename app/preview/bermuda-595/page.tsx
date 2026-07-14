@@ -1,71 +1,9 @@
 'use client';
 
-import { useRef, useEffect, useState, useCallback } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import Image from 'next/image';
 
-/* ─── Fonts ──────────────────────────────────────────────── */
-const FontStyle = () => (
-  <style>{`
-    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&display=swap');
-    .font-display  { font-family: 'Cormorant Garamond', Georgia, serif; }
-    .font-mono-b   { font-family: 'SF Mono', 'Fira Code', monospace; }
-    html { scroll-behavior: smooth; }
-    ::selection { background: rgba(255,255,255,0.12); }
-    * { -webkit-font-smoothing: antialiased; }
-
-    /* Scroll reveal */
-    .reveal        { opacity: 0; transform: translateY(28px); filter: blur(4px);
-                     transition: opacity 0.9s cubic-bezier(0.22,1,0.36,1),
-                                 transform 0.9s cubic-bezier(0.22,1,0.36,1),
-                                 filter 0.7s cubic-bezier(0.22,1,0.36,1); }
-    .reveal.visible{ opacity: 1; transform: none; filter: none; }
-    .reveal.d1     { transition-delay: 0.1s; }
-    .reveal.d2     { transition-delay: 0.22s; }
-    .reveal.d3     { transition-delay: 0.36s; }
-    .reveal.d4     { transition-delay: 0.5s; }
-    .reveal.d5     { transition-delay: 0.64s; }
-
-    /* Cursor crosshair */
-    .stage-cursor  { cursor: none; }
-
-    /* Video letterbox */
-    .hero-video    { position:absolute; inset:0; width:100%; height:100%;
-                     object-fit:cover; object-position:center; }
-
-    /* Scrubber */
-    input[type=range].track {
-      -webkit-appearance:none; appearance:none;
-      background: rgba(255,255,255,0.08); height:1px; border-radius:0;
-    }
-    input[type=range].track::-webkit-slider-thumb {
-      -webkit-appearance:none; width:10px; height:10px;
-      border-radius:50%; background:#fff; cursor:pointer;
-      box-shadow: 0 0 0 3px rgba(255,255,255,0.15);
-    }
-
-    /* Bento hover */
-    .bento-cell    { transition: transform 0.6s cubic-bezier(0.22,1,0.36,1); }
-    .bento-cell:hover { transform: scale(1.01); }
-
-    /* Nav link underline */
-    .nav-link      { position:relative; }
-    .nav-link::after {
-      content:''; position:absolute; bottom:-2px; left:0; width:0; height:1px;
-      background:rgba(255,255,255,0.5);
-      transition: width 0.4s cubic-bezier(0.22,1,0.36,1);
-    }
-    .nav-link:hover::after { width:100%; }
-
-    /* Grain overlay */
-    .grain::before {
-      content:''; position:fixed; inset:0; z-index:999; pointer-events:none;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-      background-size:180px; opacity:0.022; mix-blend-mode:overlay;
-    }
-  `}</style>
-);
-
-/* ─── Data ───────────────────────────────────────────────── */
+/* ─── Data ─────────────────────────────────────────────── */
 const SPECS = [
   { v: '5,95', u: 'm',    l: 'Eslora total'  },
   { v: '150',  u: 'HP',   l: 'Potencia máx'  },
@@ -76,20 +14,22 @@ const SPECS = [
 ];
 
 const GALLERY = [
-  { src: '/preview/bermuda-g1.jpg',       span: 'md:col-span-4 md:row-span-2', label: 'En acción'   },
-  { src: '/preview/bermuda-aerial.jpg',   span: 'md:col-span-3 md:row-span-1', label: 'Vista aérea' },
-  { src: '/preview/bermuda-front.jpg',    span: 'md:col-span-3 md:row-span-1', label: 'Proa'        },
-  { src: '/preview/bermuda-interior.jpg', span: 'md:col-span-3 md:row-span-1', label: 'Interior'    },
-  { src: '/preview/bermuda-water.jpg',    span: 'md:col-span-3 md:row-span-1', label: 'Navegando'   },
-  { src: '/preview/bermuda-dock.jpg',     span: 'md:col-span-7 md:row-span-1', label: 'En puerto'   },
+  { src: '/preview/ph4.jpg', span: 'md:col-span-4 md:row-span-2' },
+  { src: '/preview/ph5.jpg', span: 'md:col-span-3 md:row-span-1' },
+  { src: '/preview/ph3.jpg', span: 'md:col-span-3 md:row-span-1' },
+  { src: '/preview/ph1.jpg', span: 'md:col-span-3 md:row-span-1' },
+  { src: '/preview/ph2.png', span: 'md:col-span-3 md:row-span-1' },
+  { src: '/preview/ph6.jpg', span: 'md:col-span-2 md:row-span-1' },
+  { src: '/preview/ph7.jpg', span: 'md:col-span-2 md:row-span-1' },
+  { src: '/preview/ph8.jpg', span: 'md:col-span-3 md:row-span-1' },
 ];
 
-/* ─── Scroll reveal hook ─────────────────────────────────── */
+/* ─── Scroll reveal ─────────────────────────────────────── */
 function useReveal() {
   useEffect(() => {
     const els = document.querySelectorAll('.reveal');
-    const io = new IntersectionObserver(
-      entries => entries.forEach(e => { if (e.isIntersecting) { (e.target as HTMLElement).classList.add('visible'); } }),
+    const io  = new IntersectionObserver(
+      entries => entries.forEach(e => { if (e.isIntersecting) (e.target as HTMLElement).classList.add('in'); }),
       { threshold: 0.08 }
     );
     els.forEach(el => io.observe(el));
@@ -97,9 +37,9 @@ function useReveal() {
   }, []);
 }
 
-/* ─── Floating Nav ───────────────────────────────────────── */
+/* ─── Floating Nav (kept from previous) ─────────────────── */
 function FloatingNav() {
-  const [open, setOpen] = useState(false);
+  const [open,     setOpen]     = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -108,127 +48,102 @@ function FloatingNav() {
     return () => window.removeEventListener('scroll', h);
   }, []);
 
-  useEffect(() => {
-    document.body.style.overflow = open ? 'hidden' : '';
-    return () => { document.body.style.overflow = ''; };
-  }, [open]);
+  useEffect(() => { document.body.style.overflow = open ? 'hidden' : ''; }, [open]);
 
   const links = ['Modelos', 'Astillero', 'Concesionarios', 'Novedades', 'Contacto'];
 
   return (
     <>
-      {/* Nav pill */}
       <header className="fixed top-0 inset-x-0 z-40 flex justify-center pt-5 px-4 pointer-events-none">
-        <nav
-          className="pointer-events-auto flex items-center gap-8 px-6 py-3 rounded-full"
+        <nav className="pointer-events-auto flex items-center gap-8 px-6 py-3 rounded-full"
           style={{
-            background: scrolled ? 'rgba(6,6,6,0.88)' : 'rgba(6,6,6,0.55)',
+            background: scrolled ? 'rgba(6,6,6,0.9)' : 'rgba(6,6,6,0.55)',
             backdropFilter: 'blur(20px) saturate(180%)',
             border: '1px solid rgba(255,255,255,0.07)',
-            transition: 'background 0.4s cubic-bezier(0.22,1,0.36,1)',
+            transition: 'background 0.4s ease',
             boxShadow: '0 1px 0 rgba(255,255,255,0.04) inset, 0 8px 40px rgba(0,0,0,0.4)',
-          }}
-        >
-          {/* Left links */}
+          }}>
+          {/* Left */}
           <div className="hidden md:flex items-center gap-7">
-            {['Modelos', 'Astillero'].map(l => (
-              <a key={l} href="#" className="nav-link text-[11px] uppercase tracking-[0.2em] text-white/45 hover:text-white/90 transition-colors duration-300">{l}</a>
+            {['Modelos','Astillero'].map(l => (
+              <a key={l} href="#" className="text-[11px] uppercase tracking-[0.2em] text-white/40 hover:text-white transition-colors duration-300">{l}</a>
             ))}
           </div>
 
-          {/* Logo */}
           <Image src="/preview/logo-bermuda.png" alt="Bermuda" width={110} height={36} className="h-7 w-auto object-contain" />
 
-          {/* Right links */}
+          {/* Right */}
           <div className="hidden md:flex items-center gap-7">
-            {['Concesionarios', 'Contacto'].map(l => (
-              <a key={l} href="#contacto" className="nav-link text-[11px] uppercase tracking-[0.2em] text-white/45 hover:text-white/90 transition-colors duration-300">{l}</a>
+            {['Concesionarios','Contacto'].map(l => (
+              <a key={l} href="#contacto" className="text-[11px] uppercase tracking-[0.2em] text-white/40 hover:text-white transition-colors duration-300">{l}</a>
             ))}
           </div>
 
           {/* Mobile burger */}
-          <button
-            onClick={() => setOpen(v => !v)}
-            className="md:hidden relative w-6 h-4 flex flex-col justify-between"
-            aria-label={open ? 'Cerrar menú' : 'Abrir menú'}
-          >
-            <span className="block h-px bg-white/70 origin-center transition-all duration-400"
-              style={{ transform: open ? 'translateY(7px) rotate(45deg)' : 'none',
-                       transitionTimingFunction: 'cubic-bezier(0.22,1,0.36,1)' }} />
-            <span className="block h-px bg-white/70 transition-all duration-300"
-              style={{ opacity: open ? 0 : 1, transform: open ? 'scaleX(0)' : 'none' }} />
-            <span className="block h-px bg-white/70 origin-center transition-all duration-400"
-              style={{ transform: open ? 'translateY(-9px) rotate(-45deg)' : 'none',
-                       transitionTimingFunction: 'cubic-bezier(0.22,1,0.36,1)' }} />
+          <button onClick={() => setOpen(v => !v)} className="md:hidden relative w-6 h-4 flex flex-col justify-between" aria-label="Menú">
+            <span className="block h-px bg-white/70 origin-center transition-all duration-300"
+              style={{ transform: open ? 'translateY(7px) rotate(45deg)' : 'none' }} />
+            <span className="block h-px bg-white/70 transition-all duration-200"
+              style={{ opacity: open ? 0 : 1 }} />
+            <span className="block h-px bg-white/70 origin-center transition-all duration-300"
+              style={{ transform: open ? 'translateY(-9px) rotate(-45deg)' : 'none' }} />
           </button>
         </nav>
       </header>
 
       {/* Mobile overlay */}
-      <div
-        className="fixed inset-0 z-30 md:hidden flex flex-col justify-center px-10 transition-all duration-500"
+      <div className="fixed inset-0 z-30 md:hidden flex flex-col justify-center px-10 transition-all duration-500"
         style={{
           background: 'rgba(4,4,4,0.97)',
           backdropFilter: 'blur(24px)',
           opacity: open ? 1 : 0,
           pointerEvents: open ? 'auto' : 'none',
-          transitionTimingFunction: 'cubic-bezier(0.22,1,0.36,1)',
-        }}
-      >
+        }}>
         <div className="flex flex-col gap-8">
           {links.map((l, i) => (
-            <a
-              key={l}
-              href="#"
-              onClick={() => setOpen(false)}
-              className="font-display text-5xl text-white/80 hover:text-white transition-all duration-500"
+            <a key={l} href="#" onClick={() => setOpen(false)}
+              className="text-5xl font-black tracking-tighter text-white/80 hover:text-white transition-all duration-500"
               style={{
                 opacity: open ? 1 : 0,
-                transform: open ? 'none' : 'translateY(24px)',
-                transition: `opacity 0.6s cubic-bezier(0.22,1,0.36,1) ${0.07 * i}s, transform 0.6s cubic-bezier(0.22,1,0.36,1) ${0.07 * i}s`,
-                fontStyle: 'italic',
-              }}
-            >
+                transform: open ? 'none' : 'translateY(20px)',
+                transition: `opacity 0.5s ease ${0.06 * i}s, transform 0.5s ease ${0.06 * i}s`,
+              }}>
               {l}
             </a>
           ))}
         </div>
-        <p className="absolute bottom-12 left-10 text-[10px] uppercase tracking-[0.3em] text-white/20">
-          Bermuda · desde 1961
-        </p>
+        <p className="absolute bottom-12 left-10 text-[10px] uppercase tracking-[0.3em] text-white/20">Bermuda · desde 1961</p>
       </div>
     </>
   );
 }
 
-/* ─── 360 Stage ──────────────────────────────────────────── */
-function Stage360() {
-  const stageRef   = useRef<HTMLDivElement>(null);
-  const animRef    = useRef<number | null>(null);
-  const dragging   = useRef(false);
-  const startX     = useRef(0);
-  const startRot   = useRef(0);
-  const lastX      = useRef(0);
-  const lastT      = useRef(0);
-  const velRef     = useRef(0);
+/* ─── Product Viewer ────────────────────────────────────── */
+function ProductViewer() {
+  const [mode, setMode] = useState<'video' | 'rotate'>('video');
 
-  const [rot,   setRot]   = useState(0);
-  const [mode,  setMode]  = useState<'studio'|'video'>('studio');
+  /* 360 rotate state */
+  const animRef  = useRef<number | null>(null);
+  const dragging = useRef(false);
+  const startX   = useRef(0);
+  const startRot = useRef(0);
+  const lastX    = useRef(0);
+  const lastT    = useRef(0);
+  const velRef   = useRef(0);
+  const [rot,    setRot]    = useState(0);
   const [hinted, setHinted] = useState(false);
-  const [cursor, setCursor] = useState({ x: 0.5, y: 0.45 });
-  const [active, setActive] = useState(false);
+  const [cursor, setCursor] = useState({ x: 0.5, y: 0.5 });
+  const stageRef = useRef<HTMLDivElement>(null);
 
-  /* Intro pan */
   useEffect(() => {
-    let raf: number;
-    let a = 0;
-    const run = () => { a += 0.3; setRot(a); if (a < 35) raf = requestAnimationFrame(run); };
-    const t = setTimeout(() => { raf = requestAnimationFrame(run); }, 800);
+    if (mode !== 'rotate') return;
+    let raf: number, a = 0;
+    const run = () => { a += 0.35; setRot(a); if (a < 40) raf = requestAnimationFrame(run); };
+    const t = setTimeout(() => { raf = requestAnimationFrame(run); }, 400);
     return () => { clearTimeout(t); cancelAnimationFrame(raf); };
-  }, []);
+  }, [mode]);
 
   const stopInertia = () => { if (animRef.current) cancelAnimationFrame(animRef.current); };
-
   const launchInertia = () => {
     let v = velRef.current;
     const tick = () => { v *= 0.91; if (Math.abs(v) < 0.04) return; setRot(r => r + v); animRef.current = requestAnimationFrame(tick); };
@@ -236,9 +151,9 @@ function Stage360() {
   };
 
   const onPD = (e: React.PointerEvent) => {
-    stopInertia(); dragging.current = true; setActive(true); setHinted(true);
+    stopInertia(); dragging.current = true; setHinted(true);
     startX.current = e.clientX; startRot.current = rot;
-    lastX.current = e.clientX; lastT.current = performance.now(); velRef.current = 0;
+    lastX.current  = e.clientX; lastT.current = performance.now(); velRef.current = 0;
     (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
   };
   const onPM = (e: React.PointerEvent) => {
@@ -252,169 +167,110 @@ function Stage360() {
     lastX.current = e.clientX; lastT.current = now;
     setRot(startRot.current + (e.clientX - startX.current) * 0.5);
   };
-  const onPU = () => { dragging.current = false; setActive(false); launchInertia(); };
+  const onPU = () => { dragging.current = false; launchInertia(); };
 
-  const norm = ((rot % 360) + 360) % 360;
-  const rotY = Math.sin((norm * Math.PI) / 180) * 22;
+  const norm   = ((rot % 360) + 360) % 360;
+  const rotY   = Math.sin((norm * Math.PI) / 180) * 22;
   const scaleX = 1 - Math.abs(Math.sin((norm * Math.PI) / 180)) * 0.065;
   const bright = 0.9 + Math.cos((norm * Math.PI) / 180 - 0.4) * 0.2;
-  const specX = cursor.x * 100, specY = cursor.y * 100;
-  const shadowW = 50 + Math.abs(Math.sin((norm * Math.PI) / 180)) * 12;
 
   return (
-    <div className="flex flex-col items-center">
-      {/* Mode toggle */}
-      <div className="flex gap-px mb-10 rounded-full border border-white/8 overflow-hidden"
+    <div>
+      {/* Toggle */}
+      <div className="flex gap-1 mb-10 rounded-full border border-white/8 w-fit overflow-hidden"
         style={{ background: 'rgba(255,255,255,0.03)' }}>
-        {(['studio','video'] as const).map(m => (
+        {([['video','En movimiento'],['rotate','Rotar 360°']] as const).map(([m, label]) => (
           <button key={m} onClick={() => setMode(m)}
-            className="px-6 py-2 text-[10px] uppercase tracking-[0.25em] font-medium transition-all duration-400"
+            className="px-6 py-2.5 text-[11px] uppercase tracking-[0.22em] font-medium transition-all duration-300"
             style={{
-              background: mode === m ? 'rgba(255,255,255,0.1)' : 'transparent',
-              color: mode === m ? 'rgba(255,255,255,0.9)' : 'rgba(255,255,255,0.3)',
-              transitionTimingFunction: 'cubic-bezier(0.22,1,0.36,1)',
+              background: mode === m ? 'rgba(255,255,255,0.12)' : 'transparent',
+              color: mode === m ? '#fff' : 'rgba(255,255,255,0.35)',
             }}>
-            {m === 'studio' ? 'Estudio' : 'En movimiento'}
+            {label}
           </button>
         ))}
       </div>
 
       {mode === 'video' ? (
-        /* ── Local video player ── */
-        <div className="w-full max-w-5xl mx-auto rounded-2xl overflow-hidden"
-          style={{ border: '1px solid rgba(255,255,255,0.06)' }}>
-          <video
-            src="/preview/bermuda-595.mp4"
-            controls
-            autoPlay
-            muted
-            loop
-            playsInline
-            className="w-full h-auto block"
-            style={{ maxHeight: '70vh', objectFit: 'contain', background: '#000' }}
-          />
+        /* ── Video — letterboxed, not cropped ── */
+        <div className="w-full rounded-xl overflow-hidden"
+          style={{ background: '#000', border: '1px solid rgba(255,255,255,0.06)' }}>
+          <div className="relative w-full" style={{ paddingTop: '56.25%' }}>
+            <iframe
+              className="absolute inset-0 w-full h-full border-0"
+              src="https://www.youtube-nocookie.com/embed/R4e8xw8kHVs?autoplay=1&mute=1&controls=1&rel=0&modestbranding=1&loop=1&playlist=R4e8xw8kHVs"
+              title="Bermuda 595 Cuddy"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          </div>
         </div>
       ) : (
-        /* ── Studio 360 ── */
-        <div
-          ref={stageRef}
-          className="relative w-full max-w-5xl mx-auto select-none"
-          style={{ touchAction: 'none', cursor: active ? 'grabbing' : 'grab', minHeight: 420 }}
-          onPointerDown={onPD} onPointerMove={onPM} onPointerUp={onPU} onPointerCancel={onPU}
-        >
-          {/* Degree badge */}
-          <div className="absolute top-4 left-4 z-10 font-mono-b text-[10px] tabular-nums text-white/20
-            border border-white/6 px-2.5 py-1 rounded-full"
+        /* ── 360 rotate ── */
+        <div ref={stageRef}
+          className="relative w-full select-none"
+          style={{ touchAction: 'none', cursor: dragging.current ? 'grabbing' : 'grab', minHeight: 380 }}
+          onPointerDown={onPD} onPointerMove={onPM} onPointerUp={onPU} onPointerCancel={onPU}>
+
+          {/* Degree chip */}
+          <div className="absolute top-4 left-4 z-10 font-mono text-[10px] tabular-nums text-white/20 border border-white/6 px-2.5 py-1 rounded-full"
             style={{ background: 'rgba(255,255,255,0.03)' }}>
             {Math.round(norm)}°
           </div>
 
-          {/* Stage ambient glow */}
-          <div className="absolute inset-0 pointer-events-none"
-            style={{
-              background: `radial-gradient(ellipse at ${specX}% ${specY}%, rgba(180,210,255,0.05) 0%, transparent 45%),
-                           radial-gradient(ellipse at 50% 85%, rgba(20,50,140,0.28) 0%, transparent 55%)`,
-            }}
-          />
+          {/* Ambient */}
+          <div className="absolute inset-0 pointer-events-none" style={{
+            background: `radial-gradient(ellipse at ${cursor.x*100}% ${cursor.y*100}%, rgba(180,210,255,0.05) 0%, transparent 45%),
+                         radial-gradient(ellipse at 50% 85%, rgba(20,50,140,0.25) 0%, transparent 55%)`,
+          }} />
 
-          {/* Ground grid lines */}
-          <div className="absolute bottom-24 inset-x-0 pointer-events-none overflow-hidden" style={{ height: 120 }}>
-            {[0,1,2,3,4].map(i => (
-              <div key={i} className="absolute inset-x-0"
-                style={{
-                  bottom: i * 22,
-                  height: 1,
-                  background: `linear-gradient(to right, transparent, rgba(255,255,255,${0.025 - i * 0.004}), transparent)`,
-                  transform: `perspective(600px) rotateX(70deg) translateY(${i * 8}px)`,
-                }}
-              />
-            ))}
-            {/* Vertical lines converging */}
-            {[-3,-2,-1,0,1,2,3].map(j => (
-              <div key={j} className="absolute bottom-0 pointer-events-none"
-                style={{
-                  left: `calc(50% + ${j * 14}%)`,
-                  width: 1,
-                  height: '100%',
-                  background: 'linear-gradient(to top, rgba(255,255,255,0.04), transparent)',
-                  transformOrigin: 'bottom center',
-                  transform: `perspective(600px) rotateX(70deg) skewX(${j * 2}deg)`,
-                }}
-              />
+          {/* Ground lines */}
+          <div className="absolute bottom-16 inset-x-0 pointer-events-none" style={{ height: 100 }}>
+            {[0,1,2,3].map(i => (
+              <div key={i} className="absolute inset-x-0" style={{
+                bottom: i * 24, height: 1,
+                background: `linear-gradient(to right, transparent, rgba(255,255,255,${0.03 - i*0.005}), transparent)`,
+              }} />
             ))}
           </div>
 
           {/* Boat */}
-          <div className="relative z-10 pt-12 pb-6 px-8 flex items-center justify-center">
-            {/* Specular overlay */}
-            <div className="absolute inset-0 pointer-events-none z-20"
-              style={{
-                background: `radial-gradient(ellipse at ${specX}% ${specY + 20}%, rgba(255,255,255,0.07) 0%, transparent 38%)`,
-                mixBlendMode: 'screen',
-              }}
-            />
-            <div
-              style={{
-                transform: `perspective(1800px) rotateY(${rotY}deg) scaleX(${scaleX})`,
-                filter: `brightness(${bright}) contrast(1.04) drop-shadow(0 50px 90px rgba(0,5,30,0.9))`,
-                transition: dragging.current ? 'none' : 'transform 0.05s cubic-bezier(0.22,1,0.36,1)',
-                willChange: 'transform',
-              }}
-            >
-              <Image
-                src="/preview/bermuda-595.png"
-                alt="Bermuda 595 Cuddy"
-                width={960} height={460}
-                className="w-full max-w-3xl h-auto object-contain"
-                draggable={false} priority
-              />
+          <div className="relative z-10 pt-10 pb-4 px-6 flex items-center justify-center">
+            <div style={{
+              transform: `perspective(1800px) rotateY(${rotY}deg) scaleX(${scaleX})`,
+              filter: `brightness(${bright}) drop-shadow(0 40px 80px rgba(0,5,30,0.9))`,
+              transition: dragging.current ? 'none' : 'transform 0.05s ease',
+              willChange: 'transform',
+            }}>
+              <Image src="/preview/bermuda-595.png" alt="Bermuda 595 Cuddy"
+                width={900} height={440} className="w-full max-w-3xl h-auto object-contain"
+                draggable={false} priority />
             </div>
           </div>
 
-          {/* Ground shadow ellipse */}
+          {/* Shadow */}
           <div className="pointer-events-none flex justify-center" style={{ marginTop: '-3rem' }}>
             <div style={{
-              width: `${shadowW}%`,
-              height: 20,
-              background: 'radial-gradient(ellipse, rgba(0,5,30,0.9) 0%, transparent 70%)',
-              filter: 'blur(12px)',
-              transform: `scaleX(${scaleX}) translateX(${rotY * 0.6}px)`,
-              transition: dragging.current ? 'none' : 'all 0.05s',
-            }} />
-          </div>
-
-          {/* Reflection */}
-          <div className="pointer-events-none flex justify-center overflow-hidden" style={{ height: 60, marginTop: 8 }}>
-            <div style={{
-              width: '70%',
-              height: '100%',
-              backgroundImage: `url('/preview/bermuda-595.png')`,
-              backgroundSize: '100% auto',
-              backgroundPosition: 'center top',
-              backgroundRepeat: 'no-repeat',
-              transform: `scaleY(-1) perspective(800px) rotateY(${rotY * 0.6}deg) scaleX(${scaleX})`,
-              filter: 'brightness(0.15) blur(3px) saturate(0.3)',
-              WebkitMaskImage: 'linear-gradient(to bottom, rgba(0,0,0,0.5), transparent)',
-              maskImage: 'linear-gradient(to bottom, rgba(0,0,0,0.5), transparent)',
+              width: `${48 + Math.abs(rotY) * 0.8}%`, height: 16,
+              background: 'radial-gradient(ellipse, rgba(0,5,30,0.85) 0%, transparent 70%)',
+              filter: 'blur(10px)',
             }} />
           </div>
         </div>
       )}
 
-      {/* Controls */}
-      {mode === 'studio' && (
-        <div className="mt-8 flex flex-col items-center gap-4">
-          <div className={`flex items-center gap-3 text-[10px] uppercase tracking-[0.3em] text-white/25 transition-all duration-700 ${hinted ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
-            <svg width="28" height="10" viewBox="0 0 28 10" fill="none" className="animate-pulse">
-              <path d="M0 5h28M3 2L0 5l3 3M25 2l3 3-3 3" stroke="currentColor" strokeWidth="1" strokeLinecap="round"/>
-            </svg>
-            Arrastrá para rotar
-          </div>
-          <div className="flex items-center gap-4 w-64">
-            <span className="font-mono-b text-[9px] text-white/15">0°</span>
-            <input type="range" min={0} max={360} value={norm} className="flex-1 track"
-              onChange={e => { stopInertia(); setRot(+e.target.value); setHinted(true); }} />
-            <span className="font-mono-b text-[9px] text-white/15">360°</span>
+      {/* Scrubber (rotate mode only) */}
+      {mode === 'rotate' && (
+        <div className="flex flex-col items-center gap-4 mt-6">
+          <p className={`text-[10px] uppercase tracking-[0.3em] text-white/25 transition-opacity duration-500 ${hinted ? 'opacity-0' : 'opacity-100'}`}>
+            ← Arrastrá para rotar →
+          </p>
+          <div className="flex items-center gap-3 w-56">
+            <span className="font-mono text-[9px] text-white/15">0°</span>
+            <input type="range" min={0} max={360} value={norm}
+              onChange={e => { stopInertia(); setRot(+e.target.value); setHinted(true); }}
+              className="flex-1 accent-white opacity-30 hover:opacity-70 transition-opacity cursor-pointer" />
+            <span className="font-mono text-[9px] text-white/15">360°</span>
           </div>
         </div>
       )}
@@ -422,265 +278,234 @@ function Stage360() {
   );
 }
 
-/* ─── Main Page ───────────────────────────────────────────── */
+/* ─── Page ──────────────────────────────────────────────── */
 export default function Bermuda595Page() {
-  const [lightbox, setLightbox] = useState<string|null>(null);
+  const [lightbox, setLightbox] = useState<string | null>(null);
   useReveal();
 
   return (
-    <div className="grain">
-      <FontStyle />
-      <main className="bg-[#060606] text-white overflow-x-hidden min-h-[100dvh]">
+    <>
+      <style>{`
+        .reveal { opacity:0; transform:translateY(24px);
+          transition: opacity 0.8s cubic-bezier(0.22,1,0.36,1), transform 0.8s cubic-bezier(0.22,1,0.36,1); }
+        .reveal.in { opacity:1; transform:none; }
+        .reveal.d1 { transition-delay:0.1s; }
+        .reveal.d2 { transition-delay:0.2s; }
+        .reveal.d3 { transition-delay:0.32s; }
+        .reveal.d4 { transition-delay:0.44s; }
+        .hairline  { height:1px; background:rgba(255,255,255,0.06); }
+      `}</style>
 
+      <main className="bg-[#080808] text-white overflow-x-hidden" style={{ fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif" }}>
         <FloatingNav />
 
-        {/* ── HERO ─────────────────────────────────────────── */}
-        <section className="relative min-h-[100dvh] flex items-end overflow-hidden">
-          {/* Local video — crisp, object-cover */}
-          <video
-            className="hero-video"
-            src="/preview/bermuda-595.mp4"
-            autoPlay muted loop playsInline
-            style={{ opacity: 0.65 }}
-          />
+        {/* ── HERO — YouTube, letterboxed ───────────────── */}
+        <section className="relative min-h-[100dvh] flex flex-col justify-end overflow-hidden">
 
-          {/* Cinematic overlays */}
+          {/* Black bars (cinematic) */}
+          <div className="absolute inset-x-0 top-0 z-10 pointer-events-none" style={{ height: '8vh', background: '#080808' }} />
+          <div className="absolute inset-x-0 bottom-0 z-10 pointer-events-none" style={{ height: '8vh', background: '#080808' }} />
+
+          {/* YouTube — 16:9 centered, fills height, natural aspect ratio */}
+          <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
+            <div className="relative w-full h-full" style={{ maxWidth: 'calc(100vh * 16 / 9)' }}>
+              <iframe
+                className="absolute inset-0 w-full h-full border-0"
+                src="https://www.youtube-nocookie.com/embed/R4e8xw8kHVs?autoplay=1&mute=1&controls=0&rel=0&modestbranding=1&loop=1&playlist=R4e8xw8kHVs&start=3"
+                title="Bermuda 595 Cuddy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope"
+                style={{ opacity: 0.7 }}
+              />
+            </div>
+          </div>
+
+          {/* Gradient overlays */}
           <div className="absolute inset-0 pointer-events-none" style={{
-            background: 'linear-gradient(to bottom, rgba(6,6,6,0.45) 0%, rgba(6,6,6,0.0) 25%, rgba(6,6,6,0.0) 50%, rgba(6,6,6,0.65) 75%, rgba(6,6,6,1) 100%)'
-          }}/>
+            background: 'linear-gradient(to bottom, rgba(8,8,8,0.3) 0%, rgba(8,8,8,0) 20%, rgba(8,8,8,0) 55%, rgba(8,8,8,0.8) 80%, rgba(8,8,8,1) 100%)',
+          }} />
           <div className="absolute inset-0 pointer-events-none" style={{
-            background: 'linear-gradient(to right, rgba(6,6,6,0.55) 0%, transparent 50%)'
-          }}/>
+            background: 'linear-gradient(to right, rgba(8,8,8,0.5) 0%, transparent 45%)',
+          }} />
 
           {/* Content */}
-          <div className="relative z-10 w-full max-w-7xl mx-auto px-6 pb-20 md:pb-32 md:px-14">
-            <div className="max-w-2xl">
-              <p className="reveal font-mono-b text-[10px] uppercase tracking-[0.45em] text-white/35 mb-7">
-                Bermuda · Serie Cuddy · 2025
-              </p>
-              <h1 className="reveal d1 font-display leading-none"
-                style={{ fontSize: 'clamp(5.5rem, 14vw, 12rem)', fontWeight: 300, letterSpacing: '-0.02em' }}>
-                595<br/>
-                <em style={{ fontWeight: 300, color: 'transparent',
-                  WebkitTextStroke: '1px rgba(255,255,255,0.3)' }}>
-                  Cuddy
-                </em>
-              </h1>
-              <p className="reveal d2 mt-8 text-white/40 text-base leading-relaxed max-w-xs"
-                style={{ fontWeight: 300 }}>
-                Performance, confort y diseño. La lancha que redefine cada travesía.
-              </p>
-
-              {/* Hero stats strip */}
-              <div className="reveal d3 mt-12 flex items-center gap-8 border-t border-white/8 pt-8">
-                {[['150 HP','Potencia'],['55 km/h','Velocidad'],['6','Personas']].map(([v,l]) => (
-                  <div key={l}>
-                    <p className="font-display text-2xl text-white/90" style={{ fontWeight: 300 }}>{v}</p>
-                    <p className="font-mono-b text-[9px] uppercase tracking-[0.25em] text-white/30 mt-1">{l}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Scroll cue */}
-            <div className="absolute bottom-10 right-14 hidden md:flex items-center gap-3 opacity-30">
-              <div className="w-px h-14 bg-white/50" style={{
-                animation: 'pulse 2s cubic-bezier(0.4,0,0.6,1) infinite'
-              }} />
-              <p className="font-mono-b text-[9px] uppercase tracking-[0.35em] -rotate-90 origin-left ml-5" style={{ width: 60 }}>Scroll</p>
-            </div>
-          </div>
-        </section>
-
-        {/* ── TAGLINE ────────────────────────────────────────── */}
-        <section className="max-w-7xl mx-auto px-6 py-28 md:py-40 md:px-14">
-          <div className="reveal md:grid md:grid-cols-12 md:gap-12 items-end">
-            <div className="md:col-span-8">
-              <span className="inline-flex items-center gap-2 rounded-full border border-white/8 px-3 py-1 mb-8"
-                style={{ background: 'rgba(255,255,255,0.03)' }}>
-                <span className="w-1 h-1 rounded-full bg-white/40 animate-pulse" />
-                <span className="font-mono-b text-[9px] uppercase tracking-[0.3em] text-white/35">Desde Tigre al mundo</span>
+          <div className="relative z-20 max-w-7xl mx-auto w-full px-6 md:px-14 pb-20 md:pb-28">
+            <p className="reveal font-mono text-[10px] uppercase tracking-[0.42em] text-white/35 mb-5">
+              Bermuda · Serie Cuddy · 2025
+            </p>
+            <h1 className="reveal d1 font-black tracking-tighter leading-none"
+              style={{ fontSize: 'clamp(5rem, 13vw, 11rem)' }}>
+              595<br />
+              <span style={{ WebkitTextStroke: '1px rgba(255,255,255,0.28)', color: 'transparent' }}>
+                CUDDY
               </span>
-              <h2 className="font-display leading-[0.95] text-white/90"
-                style={{ fontSize: 'clamp(3rem,7vw,6.5rem)', fontWeight: 300, letterSpacing: '-0.02em' }}>
-                Más de 10.000<br/>
-                <em style={{ color: 'rgba(255,255,255,0.28)', fontWeight: 300 }}>
-                  embarcaciones<br/>entregadas.
-                </em>
-              </h2>
-            </div>
-            <div className="md:col-span-4 mt-8 md:mt-0 reveal d2">
-              <p className="text-white/30 text-sm leading-relaxed" style={{ fontWeight: 300 }}>
-                Fabricante argentino líder desde 1961. Casa central en Tigre, Buenos Aires. Distribuimos en todo el país a través de una red de concesionarios exclusivos.
-              </p>
-            </div>
-          </div>
-        </section>
+            </h1>
+            <p className="reveal d2 mt-6 text-white/40 max-w-xs text-base leading-relaxed">
+              Performance, confort y diseño en cada travesía.
+            </p>
 
-        {/* ── STAGE 360 ────────────────────────────────────── */}
-        <section className="relative overflow-hidden py-20 md:py-28"
-          style={{ background: 'linear-gradient(180deg, #060606 0%, #08101e 50%, #060606 100%)' }}>
-
-          <div className="max-w-7xl mx-auto px-6 md:px-14 mb-14">
-            <div className="reveal flex items-end justify-between">
-              <div>
-                <span className="font-mono-b text-[10px] uppercase tracking-[0.35em] text-white/20">Vista interactiva</span>
-                <h3 className="font-display mt-3 text-white/90"
-                  style={{ fontSize: 'clamp(2rem,5vw,4rem)', fontWeight: 300, letterSpacing: '-0.02em' }}>
-                  595 Cuddy
-                </h3>
-              </div>
-              <p className="reveal d2 hidden md:block text-right text-white/20 text-xs max-w-40 leading-relaxed" style={{ fontWeight: 300 }}>
-                Girá el modelo 360° o miralo en movimiento
-              </p>
-            </div>
-          </div>
-
-          <div className="reveal d1 max-w-7xl mx-auto px-6 md:px-14">
-            <Stage360 />
-          </div>
-        </section>
-
-        {/* ── SPECS ─────────────────────────────────────────── */}
-        <section className="max-w-7xl mx-auto px-6 py-28 md:py-40 md:px-14">
-          <div className="reveal mb-16 flex items-center justify-between">
-            <span className="font-mono-b text-[10px] uppercase tracking-[0.35em] text-white/20">Especificaciones técnicas</span>
-            <div className="h-px flex-1 mx-8" style={{ background: 'linear-gradient(to right, rgba(255,255,255,0.06), transparent)' }} />
-          </div>
-
-          {/* Outer shell (Double-Bezel) */}
-          <div className="rounded-3xl p-0.5" style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.05)' }}>
-            <div className="rounded-[calc(1.5rem-2px)] overflow-hidden" style={{ background: '#090909' }}>
-              <div className="grid grid-cols-2 md:grid-cols-3">
-                {SPECS.map((s, i) => (
-                  <div key={s.l}
-                    className={`reveal d${(i % 3) + 1} p-8 md:p-12 group transition-colors duration-500 hover:bg-white/[0.025]`}
-                    style={{
-                      borderRight: i % 3 !== 2 ? '1px solid rgba(255,255,255,0.05)' : 'none',
-                      borderBottom: i < 3 ? '1px solid rgba(255,255,255,0.05)' : 'none',
-                    }}>
-                    <p className="font-display leading-none text-white/90 group-hover:text-white transition-colors duration-500"
-                      style={{ fontSize: 'clamp(2.8rem,5.5vw,5rem)', fontWeight: 300 }}>
-                      {s.v}
-                      <span className="text-white/20 ml-2" style={{ fontSize: '0.35em', letterSpacing: '0.1em' }}>{s.u}</span>
-                    </p>
-                    <p className="font-mono-b mt-4 text-[9px] uppercase tracking-[0.3em] text-white/25">{s.l}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* ── GALLERY BENTO ─────────────────────────────────── */}
-        <section className="max-w-7xl mx-auto px-6 pb-28 md:pb-40 md:px-14">
-          <div className="reveal mb-12 flex items-center gap-6">
-            <span className="font-mono-b text-[10px] uppercase tracking-[0.35em] text-white/20">Galería</span>
-            <div className="h-px flex-1" style={{ background: 'linear-gradient(to right, rgba(255,255,255,0.06), transparent)' }} />
-          </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-7 auto-rows-[200px] md:auto-rows-[220px] gap-2 md:gap-2.5">
-            {GALLERY.map((item, i) => (
-              <button
-                key={item.src}
-                onClick={() => setLightbox(item.src)}
-                className={`bento-cell reveal d${(i % 3) + 1} relative overflow-hidden group rounded-xl ${item.span}`}
-                style={{ border: '1px solid rgba(255,255,255,0.04)' }}
-              >
-                <Image src={item.src} alt={item.label} fill
-                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]" />
-                <div className="absolute inset-0 transition-opacity duration-500"
-                  style={{ background: 'rgba(0,0,0,0.25)', opacity: 1 }} />
-                <div className="absolute inset-0 transition-opacity duration-500 opacity-0 group-hover:opacity-100"
-                  style={{ background: 'rgba(0,0,0,0.0)' }} />
-                <span className="absolute bottom-4 left-4 font-mono-b text-[9px] uppercase tracking-[0.25em] text-white/50
-                  opacity-0 group-hover:opacity-100 transition-all duration-400 translate-y-1 group-hover:translate-y-0">
-                  {item.label}
-                </span>
-              </button>
-            ))}
-          </div>
-        </section>
-
-        {/* ── FEATURES ──────────────────────────────────────── */}
-        <section className="border-y border-white/[0.05] py-20">
-          <div className="max-w-7xl mx-auto px-6 md:px-14">
-            <div className="grid md:grid-cols-4 gap-12 md:gap-8">
-              {[
-                ['Cabina Cuddy',      'Espacio interior privado para descanso en travesías largas.'],
-                ['Casco en V profundo','Estabilidad y rendimiento en cualquier condición de agua.'],
-                ['Consola central',   'Ergonomía y visibilidad total de la navegación.'],
-                ['Toldo Bimini',      'Protección UV incluida de fábrica.'],
-              ].map(([n, d], i) => (
-                <div key={n} className={`reveal d${i + 1}`}>
-                  <div className="w-6 h-px bg-white/20 mb-7" />
-                  <p className="font-display text-lg text-white/80 mb-3" style={{ fontWeight: 400, letterSpacing: '-0.01em' }}>{n}</p>
-                  <p className="text-white/30 text-sm leading-relaxed" style={{ fontWeight: 300 }}>{d}</p>
+            {/* Stats */}
+            <div className="reveal d3 mt-10 flex items-center gap-8 pt-8 border-t border-white/8">
+              {[['150 HP','Potencia'],['55 km/h','Velocidad'],['6','Personas']].map(([v,l]) => (
+                <div key={l}>
+                  <p className="text-2xl font-black tracking-tighter">{v}</p>
+                  <p className="font-mono text-[9px] uppercase tracking-[0.25em] text-white/30 mt-0.5">{l}</p>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* ── CONTACT ───────────────────────────────────────── */}
-        <section id="contacto" className="max-w-7xl mx-auto px-6 py-28 md:py-40 md:px-14">
-          <div className="reveal md:flex items-end justify-between gap-16">
-            <div className="flex-1">
-              <span className="inline-flex items-center gap-2 rounded-full border border-white/8 px-3 py-1 mb-10"
-                style={{ background: 'rgba(255,255,255,0.03)' }}>
-                <span className="font-mono-b text-[9px] uppercase tracking-[0.3em] text-white/30">Contacto</span>
-              </span>
-              <h2 className="font-display leading-[0.92]"
-                style={{ fontSize: 'clamp(3.5rem,9vw,8rem)', fontWeight: 300, letterSpacing: '-0.03em' }}>
-                Tu próxima<br/>
-                <em style={{ color: 'rgba(255,255,255,0.22)', fontWeight: 300 }}>lancha.</em>
+        {/* ── TAGLINE ─────────────────────────────────────── */}
+        <section className="max-w-7xl mx-auto px-6 md:px-14 py-24 md:py-36">
+          <div className="reveal md:grid md:grid-cols-12 md:gap-12 items-end">
+            <div className="md:col-span-7">
+              <h2 className="font-black tracking-tighter leading-none text-white/90"
+                style={{ fontSize: 'clamp(2.8rem, 6vw, 5.5rem)' }}>
+                Desde Tigre<br />
+                <span className="text-white/25">al mundo.</span>
               </h2>
             </div>
+            <div className="md:col-span-5 mt-8 md:mt-0 reveal d2">
+              <p className="text-white/35 leading-relaxed">
+                Fabricante argentino líder desde 1961. Más de 10.000 embarcaciones entregadas a través de una red exclusiva de concesionarios en todo el país.
+              </p>
+            </div>
+          </div>
+        </section>
 
-            <div className="reveal d2 mt-12 md:mt-0 flex flex-col items-start md:items-end gap-6">
-              <p className="text-white/30 text-sm leading-relaxed md:text-right max-w-xs" style={{ fontWeight: 300 }}>
+        {/* ── PRODUCT VIEWER ──────────────────────────────── */}
+        <section className="py-16 md:py-24"
+          style={{ background: 'linear-gradient(180deg, #080808 0%, #0a1020 50%, #080808 100%)' }}>
+          <div className="max-w-7xl mx-auto px-6 md:px-14">
+            <div className="reveal flex items-end justify-between mb-12">
+              <div>
+                <p className="font-mono text-[10px] uppercase tracking-[0.38em] text-white/22 mb-2">Vista interactiva</p>
+                <h3 className="font-black tracking-tighter text-3xl md:text-5xl">595 Cuddy</h3>
+              </div>
+            </div>
+            <div className="reveal d1">
+              <ProductViewer />
+            </div>
+          </div>
+        </section>
+
+        {/* ── SPECS ───────────────────────────────────────── */}
+        <section className="max-w-7xl mx-auto px-6 md:px-14 py-24 md:py-36">
+          <div className="reveal flex items-center gap-6 mb-14">
+            <p className="font-mono text-[10px] uppercase tracking-[0.38em] text-white/22 flex-shrink-0">Especificaciones</p>
+            <div className="hairline flex-1" />
+          </div>
+
+          {/* Double-bezel container */}
+          <div className="rounded-2xl p-px" style={{ background: 'rgba(255,255,255,0.06)' }}>
+            <div className="rounded-[calc(1rem-1px)] overflow-hidden" style={{ background: '#0a0a0a' }}>
+              <div className="grid grid-cols-2 md:grid-cols-3">
+                {SPECS.map((s, i) => (
+                  <div key={s.l}
+                    className={`reveal d${(i % 3) + 1} p-8 md:p-12 group hover:bg-white/[0.02] transition-colors duration-500`}
+                    style={{
+                      borderRight: i % 3 !== 2 ? '1px solid rgba(255,255,255,0.05)' : 'none',
+                      borderBottom: i < 3       ? '1px solid rgba(255,255,255,0.05)' : 'none',
+                    }}>
+                    <p className="font-black tracking-tighter leading-none group-hover:text-white transition-colors duration-400"
+                      style={{ fontSize: 'clamp(2.8rem, 5.5vw, 5rem)', color: 'rgba(255,255,255,0.88)' }}>
+                      {s.v}
+                      <span style={{ fontSize: '0.35em', marginLeft: '0.2em', color: 'rgba(255,255,255,0.2)', letterSpacing: '0.08em' }}>{s.u}</span>
+                    </p>
+                    <p className="font-mono mt-3 text-[9px] uppercase tracking-[0.3em] text-white/25">{s.l}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ── GALLERY ─────────────────────────────────────── */}
+        <section className="max-w-7xl mx-auto px-6 md:px-14 pb-24 md:pb-36">
+          <div className="reveal flex items-center gap-6 mb-10">
+            <p className="font-mono text-[10px] uppercase tracking-[0.38em] text-white/22 flex-shrink-0">Galería</p>
+            <div className="hairline flex-1" />
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-7 auto-rows-[180px] md:auto-rows-[210px] gap-2 md:gap-2.5">
+            {GALLERY.map((item, i) => (
+              <button
+                key={item.src}
+                onClick={() => setLightbox(item.src)}
+                className={`reveal d${(i % 3) + 1} relative overflow-hidden rounded-xl group ${item.span}`}
+                style={{ border: '1px solid rgba(255,255,255,0.04)' }}
+              >
+                <Image src={item.src} alt={`Bermuda ${i+1}`} fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-[1.05]" />
+                <div className="absolute inset-0 bg-black/25 group-hover:bg-black/0 transition-colors duration-500" />
+              </button>
+            ))}
+          </div>
+        </section>
+
+        {/* ── FEATURES ────────────────────────────────────── */}
+        <section className="border-y border-white/[0.05] py-18">
+          <div className="max-w-7xl mx-auto px-6 md:px-14 py-16">
+            <div className="grid md:grid-cols-4 gap-10">
+              {[
+                ['Cabina Cuddy',       'Espacio interior privado para travesías largas.'],
+                ['Casco en V profundo','Estabilidad en cualquier condición del agua.'],
+                ['Consola central',    'Ergonomía y visibilidad total de la navegación.'],
+                ['Toldo Bimini',       'Protección UV incluida de fábrica.'],
+              ].map(([n, d], i) => (
+                <div key={n} className={`reveal d${i+1}`}>
+                  <div className="w-6 h-px bg-white/18 mb-6" />
+                  <p className="font-bold tracking-tight text-white/80 mb-2">{n}</p>
+                  <p className="text-white/30 text-sm leading-relaxed">{d}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ── CTA ─────────────────────────────────────────── */}
+        <section id="contacto" className="max-w-7xl mx-auto px-6 md:px-14 py-24 md:py-36">
+          <div className="reveal md:flex items-end justify-between gap-16">
+            <div>
+              <p className="font-mono text-[10px] uppercase tracking-[0.38em] text-white/22 mb-6">Contacto</p>
+              <h2 className="font-black tracking-tighter leading-none"
+                style={{ fontSize: 'clamp(3.5rem, 9vw, 8.5rem)' }}>
+                Tu próxima<br />
+                <span style={{ WebkitTextStroke: '1px rgba(255,255,255,0.22)', color: 'transparent' }}>
+                  lancha.
+                </span>
+              </h2>
+            </div>
+            <div className="reveal d2 mt-10 md:mt-0 flex flex-col md:items-end gap-5">
+              <p className="text-white/30 text-sm leading-relaxed md:text-right max-w-xs">
                 Cotizá tu Bermuda 595 Cuddy o encontrá el concesionario más cercano.
               </p>
               <div className="flex items-center gap-3">
-                {/* Primary — double-bezel button */}
                 <a href="#"
-                  className="group relative flex items-center gap-3 pl-6 pr-1.5 py-1.5 rounded-full transition-all duration-500"
-                  style={{
-                    background: 'rgba(255,255,255,0.9)',
-                    transitionTimingFunction: 'cubic-bezier(0.22,1,0.36,1)',
-                  }}
-                >
-                  <span className="text-black text-sm font-medium tracking-wide">Cotizá ahora</span>
-                  {/* Icon in button */}
-                  <span className="w-8 h-8 rounded-full flex items-center justify-center transition-transform duration-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                    style={{ background: 'rgba(0,0,0,0.1)', transitionTimingFunction: 'cubic-bezier(0.22,1,0.36,1)' }}>
-                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                      <path d="M2 10L10 2M10 2H4M10 2v6" stroke="#000" strokeWidth="1.5" strokeLinecap="round"/>
+                  className="group flex items-center gap-3 pl-6 pr-1.5 py-1.5 rounded-full bg-white hover:bg-white/90 transition-colors duration-300">
+                  <span className="text-black text-sm font-semibold tracking-wide">Cotizá ahora</span>
+                  <span className="w-8 h-8 rounded-full bg-black/10 flex items-center justify-center group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300">
+                    <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
+                      <path d="M1.5 9.5L9.5 1.5M9.5 1.5H3.5M9.5 1.5v6" stroke="#000" strokeWidth="1.5" strokeLinecap="round"/>
                     </svg>
                   </span>
                 </a>
-                {/* Secondary */}
-                <a href="#"
-                  className="nav-link text-white/40 hover:text-white/80 text-sm transition-colors duration-400 px-2"
-                  style={{ fontWeight: 300 }}>
-                  Concesionarios
+                <a href="#" className="text-white/35 hover:text-white/70 text-sm transition-colors duration-300 px-2">
+                  Ver concesionarios
                 </a>
               </div>
             </div>
           </div>
         </section>
 
-        {/* ── FOOTER ────────────────────────────────────────── */}
-        <footer className="border-t border-white/[0.05] px-6 py-8 md:px-14">
+        {/* ── FOOTER ──────────────────────────────────────── */}
+        <footer className="border-t border-white/5 px-6 py-7 md:px-14">
           <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-3">
-            <Image src="/preview/logo-bermuda.png" alt="Bermuda" width={80} height={26} className="h-5 w-auto object-contain opacity-25" />
-            <p className="font-mono-b text-[9px] text-white/15 text-center">
-              © 2025 Bermuda Lanchas — Todos los derechos reservados
-            </p>
-            <p className="font-mono-b text-[9px] text-white/15">
+            <Image src="/preview/logo-bermuda.png" alt="Bermuda" width={80} height={26} className="h-5 w-auto object-contain opacity-20" />
+            <p className="font-mono text-[9px] text-white/15">© 2025 Bermuda Lanchas. Todos los derechos reservados.</p>
+            <p className="font-mono text-[9px] text-white/15">
               Diseñado por{' '}
-              <a href="https://sparkdigital.agency" target="_blank" rel="noopener noreferrer"
-                className="hover:text-white/40 transition-colors duration-300">
+              <a href="https://sparkdigital.agency" target="_blank" rel="noopener noreferrer" className="hover:text-white/40 transition-colors">
                 Spark Digital Agency
               </a>
             </p>
@@ -689,27 +514,24 @@ export default function Bermuda595Page() {
 
         {/* ── LIGHTBOX ──────────────────────────────────────── */}
         {lightbox && (
-          <div
-            className="fixed inset-0 z-50 flex items-center justify-center p-4"
-            style={{ background: 'rgba(0,0,0,0.96)', backdropFilter: 'blur(24px)', cursor: 'zoom-out' }}
-            onClick={() => setLightbox(null)}
-          >
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4"
+            style={{ background: 'rgba(0,0,0,0.95)', backdropFilter: 'blur(20px)', cursor: 'zoom-out' }}
+            onClick={() => setLightbox(null)}>
             <button
-              className="absolute top-7 right-7 w-10 h-10 rounded-full flex items-center justify-center border border-white/10 text-white/40 hover:text-white transition-all duration-300"
-              style={{ background: 'rgba(255,255,255,0.05)' }}
-              onClick={() => setLightbox(null)}
-            >
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                <path d="M13 1L1 13M1 1l12 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+              className="absolute top-6 right-6 w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white/40 hover:text-white transition-colors"
+              style={{ background: 'rgba(255,255,255,0.04)' }}
+              onClick={() => setLightbox(null)}>
+              <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
+                <path d="M12 1L1 12M1 1l11 11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
               </svg>
             </button>
-            <div className="relative max-w-6xl w-full" onClick={e => e.stopPropagation()}>
-              <Image src={lightbox} alt="Bermuda 595 Cuddy" width={1400} height={900}
+            <div className="max-w-6xl w-full" onClick={e => e.stopPropagation()}>
+              <Image src={lightbox} alt="" width={1400} height={900}
                 className="w-full h-auto object-contain max-h-[88vh] rounded-xl" />
             </div>
           </div>
         )}
       </main>
-    </div>
+    </>
   );
 }
