@@ -299,10 +299,6 @@ export default function Bermuda595Page() {
         {/* ── HERO — YouTube, letterboxed ───────────────── */}
         <section className="relative min-h-[100dvh] flex flex-col justify-end overflow-hidden">
 
-          {/* Black bars (cinematic) */}
-          <div className="absolute inset-x-0 top-0 z-10 pointer-events-none" style={{ height: '8vh', background: '#080808' }} />
-          <div className="absolute inset-x-0 bottom-0 z-10 pointer-events-none" style={{ height: '8vh', background: '#080808' }} />
-
           {/* YouTube — 16:9 centered, fills height, natural aspect ratio */}
           <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
             <div className="relative w-full h-full" style={{ maxWidth: 'calc(100vh * 16 / 9)' }}>
