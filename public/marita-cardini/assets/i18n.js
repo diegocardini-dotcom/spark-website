@@ -146,8 +146,11 @@
     lang = l;
     localStorage.setItem(STORE, l);
     document.documentElement.lang = l;
-    var btn = document.getElementById('lang-toggle');
-    if (btn) btn.textContent = l === 'es' ? 'EN' : 'ES';
+    var label = l === 'es' ? 'EN' : 'ES';
+    ['lang-toggle', 'menu-lang'].forEach(function (id) {
+      var btn = document.getElementById(id);
+      if (btn) btn.textContent = label;
+    });
     var map = T[l];
     Object.keys(map).forEach(function (k) {
       document.querySelectorAll('[data-t="' + k + '"]').forEach(function (el) {
@@ -159,9 +162,11 @@
   window.__mcLang = { apply: apply, get: function () { return lang; } };
 
   document.addEventListener('DOMContentLoaded', function () {
-    var btn = document.getElementById('lang-toggle');
-    if (btn) btn.addEventListener('click', function () {
-      apply(lang === 'es' ? 'en' : 'es');
+    ['lang-toggle', 'menu-lang'].forEach(function (id) {
+      var btn = document.getElementById(id);
+      if (btn) btn.addEventListener('click', function () {
+        apply(lang === 'es' ? 'en' : 'es');
+      });
     });
     apply(lang);
   });

@@ -21,10 +21,12 @@
       '<button class="nav__burger" id="burger" aria-label="Menú"><span></span><span></span></button>' +
     '</nav>' +
     '<div class="menu" id="menu">' +
+      '<button class="menu__close" id="menu-close" aria-label="Cerrar menú">Cerrar<span aria-hidden="true">×</span></button>' +
       '<a href="index.html#coleccion" data-t="nav.collection">Colección</a>' +
       '<a href="nosotros.html" data-t="nav.about">Nosotros</a>' +
       '<a href="mailto:info@maritacardini.com?subject=Quiero%20reservar%20una%20cita" data-t="menu.cita">Reservá tu cita</a>' +
       '<a href="#contacto" data-t="menu.contact">Contacto</a>' +
+      '<button class="menu__lang" id="menu-lang" aria-label="Switch language">EN</button>' +
       '<div class="menu__foot"><span class="cap">Ugarteche 3146 · Palermo</span><span class="cap">(011) 4802-0193</span></div>' +
     '</div>';
 

@@ -60,39 +60,49 @@
     gsap.from([".hero__eyebrow", ".hero__sub", ".hero__cta"], { opacity: 0, y: 22, duration: .9, ease: "power2.out", stagger: .1, delay: .35 });
     gsap.from(".hero__meta", { opacity: 0, duration: 1, ease: "power2.out", delay: .8 });
     gsap.fromTo(".hero__bg", { scale: 1.14 }, { scale: 1, duration: 2.6, ease: "power2.out" });
-    // parallax: content drifts up + fades as you scroll past the hero
-    gsap.to(".hero__inner", { yPercent: -18, opacity: .25, ease: "none",
-      scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true } });
-    gsap.to(".hero__bg", { yPercent: 12, ease: "none",
-      scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true } });
+    // parallax on desktop only — scrub is expensive on iOS
+    if (!matchMedia("(max-width: 900px)").matches) {
+      gsap.to(".hero__inner", { yPercent: -18, opacity: .25, ease: "none",
+        scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true } });
+      gsap.to(".hero__bg", { yPercent: 12, ease: "none",
+        scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true } });
+    }
   }
 
   /* scroll-driven */
+  var isSmall = matchMedia("(max-width: 900px)").matches;
+
   function initScroll(){
     ScrollTrigger.batch(".reveal", {
       start: "top 88%",
       onEnter: function(els){ gsap.to(els, { opacity: 1, y: 0, filter: "blur(0px)", duration: 1, ease: "power3.out", stagger: .07, overwrite: true }); }
     });
 
+    // Simple fade + slide reveal — no clip-path (was getting stuck showing a thin strip)
     all("[data-reveal-media]").forEach(function(m){
       var img = m.querySelector("img, video");
-      gsap.fromTo(m, { clipPath: "inset(0 0 92% 0)" }, {
-        clipPath: "inset(0 0 0% 0)", duration: 1.2, ease: "power3.out",
-        scrollTrigger: { trigger: m, start: "top 88%", once: true }
+      gsap.fromTo(m, { opacity: 0, y: 40 }, {
+        opacity: 1, y: 0, duration: 1.1, ease: "power3.out",
+        scrollTrigger: { trigger: m, start: "top 92%", once: true }
       });
-      if (img) gsap.fromTo(img, { scale: 1.16 }, { scale: 1, ease: "none",
-        scrollTrigger: { trigger: m, start: "top bottom", end: "bottom top", scrub: true } });
+      if (img && !isSmall) gsap.fromTo(img, { scale: 1.1 }, {
+        scale: 1, ease: "none",
+        scrollTrigger: { trigger: m, start: "top bottom", end: "bottom top", scrub: true }
+      });
     });
 
-    all(".story__media img, .cita__media img, .gcard__media img, .ctile__img img, .catgrid__item img").forEach(function(img){
-      gsap.to(img, { yPercent: -6, ease: "none", scrollTrigger: { trigger: img.closest("*"), start: "top bottom", end: "bottom top", scrub: true } });
-    });
+    // Parallax on media — desktop only (scrub causes iOS jank)
+    if (!isSmall) {
+      all(".story__media img, .cita__media img, .gcard__media img, .ctile__img img, .catgrid__item img").forEach(function(img){
+        gsap.to(img, { yPercent: -6, ease: "none", scrollTrigger: { trigger: img.closest("*"), start: "top bottom", end: "bottom top", scrub: true } });
+      });
+    }
 
     var sig = document.getElementById("sigMark");
     if (sig) gsap.to(sig, { clipPath: "inset(0 0% 0 0)", duration: 1.6, ease: "power2.inOut", scrollTrigger: { trigger: sig, start: "top 80%", once: true } });
 
     var av = document.querySelector(".atelier video");
-    if (av) gsap.fromTo(av, { scale: 1.12 }, { scale: 1, ease: "none", scrollTrigger: { trigger: ".atelier", start: "top bottom", end: "bottom top", scrub: true } });
+    if (av && !isSmall) gsap.fromTo(av, { scale: 1.12 }, { scale: 1, ease: "none", scrollTrigger: { trigger: ".atelier", start: "top bottom", end: "bottom top", scrub: true } });
 
     // pagehero (inner pages) reveal
     if (document.querySelector(".pagehero")) {
@@ -124,6 +134,8 @@
   }
   if (burger) burger.addEventListener("click", function(){ toggleMenu(!menu.classList.contains("open")); });
   all("#menu a").forEach(function(a){ a.addEventListener("click", function(){ toggleMenu(false); }); });
+  var mclose = document.getElementById("menu-close");
+  if (mclose) mclose.addEventListener("click", function(){ toggleMenu(false); });
 
   /* horizontal drag-to-scroll (gallery + category rows) */
   all(".gtrack").forEach(function(t){
