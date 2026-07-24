@@ -50,8 +50,7 @@
               '</div>' +
             '</div>' +
           '</div>' +
-          '<a class="footer__map" href="https://maps.google.com/?q=Ugarteche+3146+Buenos+Aires" target="_blank" rel="noopener" aria-label="Ver ubicación en Google Maps">' +
-            '<iframe title="Mapa · Ugarteche 3146, Palermo" src="https://www.google.com/maps?q=Ugarteche%203146,%20Buenos%20Aires&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>' +
+          '<a class="footer__map" href="https://maps.google.com/?q=Ugarteche+3146+Buenos+Aires" target="_blank" rel="noopener" aria-label="Ver ubicación en Google Maps" id="footer-map">' +
             '<span class="footer__map-tag cap" data-t="footer.directions">Cómo llegar →</span>' +
           '</a>' +
         '</div>' +
@@ -66,6 +65,26 @@
 
   var yr = document.getElementById("yr");
   if (yr) yr.textContent = new Date().getFullYear();
+
+  // Lazy-load Google Maps when user scrolls near the footer
+  var mapEl = document.getElementById("footer-map");
+  if (mapEl) {
+    var loadMap = function() {
+      var iframe = document.createElement("iframe");
+      iframe.title = "Mapa · Ugarteche 3146, Palermo";
+      iframe.src = "https://www.google.com/maps?q=Ugarteche%203146,%20Buenos%20Aires&output=embed";
+      iframe.setAttribute("referrerpolicy", "no-referrer-when-downgrade");
+      mapEl.insertBefore(iframe, mapEl.querySelector(".footer__map-tag"));
+    };
+    if ("IntersectionObserver" in window) {
+      var obs = new IntersectionObserver(function(entries) {
+        if (entries[0].isIntersecting) { loadMap(); obs.disconnect(); }
+      }, { rootMargin: "400px" });
+      obs.observe(mapEl);
+    } else {
+      loadMap();
+    }
+  }
 
   // active link
   var catPages = ["bachas.html","griferias.html","muebles.html","guardas.html","revestimientos.html"];
