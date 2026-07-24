@@ -8,6 +8,13 @@ const nextConfig = {
       { protocol: 'https', hostname: 'images.unsplash.com' },
     ],
   },
+  async rewrites() {
+    return [
+      // Serve the Marita Cardini static site at /marita-cardini
+      { source: '/marita-cardini', destination: '/marita-cardini/index.html' },
+      { source: '/marita-cardini/', destination: '/marita-cardini/index.html' },
+    ];
+  },
 };
 
 export default nextConfig;
