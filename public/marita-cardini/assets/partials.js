@@ -27,7 +27,7 @@
       '<a href="mailto:info@maritacardini.com?subject=Quiero%20reservar%20una%20cita" data-t="menu.cita">Reservá tu cita</a>' +
       '<a href="#contacto" data-t="menu.contact">Contacto</a>' +
       '<button class="menu__lang" id="menu-lang" aria-label="Switch language">EN</button>' +
-      '<div class="menu__foot"><span class="cap">Ugarteche 3146 · Palermo</span><span class="cap">(011) 4802-0193</span></div>' +
+      '<div class="menu__foot"><span class="cap">Ugarteche 3146 · Palermo</span><span class="cap">(+54) 11 5497-5453</span></div>' +
     '</div>';
 
   var footer =
@@ -46,7 +46,7 @@
             '<div class="footer__cols">' +
               '<div class="footer__col"><h4 data-t="footer.visit.h">Visitá el local</h4><p>Ugarteche 3146<br>Palermo, C1425EVH<br>Ciudad de Buenos Aires<br>Lunes a Viernes, 13 a 19 h</p></div>' +
               '<div class="footer__col"><h4 data-t="footer.contact.h">Contacto</h4>' +
-                '<a href="tel:+541148020193">(011) 4802-0193</a>' +
+                '<a href="tel:+541154975453">(+54) 11 5497-5453</a>' +
                 '<a href="mailto:info@maritacardini.com">info@maritacardini.com</a>' +
                 '<a href="https://www.instagram.com/maritacardini/" target="_blank" rel="noopener">Instagram</a>' +
               '</div>' +
