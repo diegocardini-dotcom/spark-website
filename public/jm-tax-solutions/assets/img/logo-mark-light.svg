@@ -1,0 +1,5 @@
+<svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="JM Tax Solutions">
+  <circle cx="24" cy="24" r="21" fill="none" stroke="#ffffff" stroke-width="2.6" stroke-linecap="round" stroke-dasharray="115 17" transform="rotate(-54 24 24)"/>
+  <circle cx="24" cy="24" r="21" fill="none" stroke="#5a9bd0" stroke-width="2.6" stroke-linecap="round" stroke-dasharray="22 110" transform="rotate(128 24 24)"/>
+  <text x="24" y="24" text-anchor="middle" dominant-baseline="central" font-family="'Public Sans', 'Segoe UI', Arial, sans-serif" font-weight="800" font-size="15.5" letter-spacing="-0.5" fill="#ffffff">JM</text>
+</svg>
