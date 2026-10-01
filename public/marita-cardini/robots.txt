@@ -1,4 +1,2 @@
 User-agent: *
-Allow: /
-
-Sitemap: https://www.sparkdigital.agency/marita-cardini/sitemap.xml
+Disallow: /marita-cardini/

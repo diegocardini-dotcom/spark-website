@@ -57,6 +57,8 @@
       'footer.contact.h':  'Contacto',
       'footer.directions': 'Cómo llegar →',
       'footer.brand.cap':  'Boutique Bathroom Decor · desde 1986',
+      'footer.hours':      'Lun, Mié y Vie · 14–19 h',
+      'footer.hours.appt': 'Otros horarios con cita previa',
       /* NOSOTROS PAGE */
       'nos.eyebrow':    'Nosotros · El oficio',
       'nos.h1':         'Una sola mano,<br><em>una sola visión.</em>',
@@ -124,6 +126,8 @@
       'footer.contact.h':  'Contact',
       'footer.directions': 'Get directions →',
       'footer.brand.cap':  'Boutique Bathroom Decor · since 1986',
+      'footer.hours':      'Mon, Wed & Fri · 2–7 pm',
+      'footer.hours.appt': 'Other times by appointment',
       /* NOSOTROS PAGE */
       'nos.eyebrow':    'About · The craft',
       'nos.h1':         'One hand,<br><em>one vision.</em>',

@@ -44,7 +44,7 @@
               '<span class="cap" data-t="footer.brand.cap">Boutique Bathroom Decor · desde 1986</span>' +
             '</div>' +
             '<div class="footer__cols">' +
-              '<div class="footer__col"><h4 data-t="footer.visit.h">Visitá el local</h4><p>Ugarteche 3146<br>Palermo, C1425EVH<br>Ciudad de Buenos Aires<br>Lunes a Viernes, 13 a 19 h</p></div>' +
+              '<div class="footer__col"><h4 data-t="footer.visit.h">Visitá el local</h4><p>Ugarteche 3146<br>Palermo, C1425EVH<br>Ciudad de Buenos Aires<br><span data-t="footer.hours">Lun, Mié y Vie · 14–19 h</span><br><small data-t="footer.hours.appt">Otros horarios con cita previa</small></p></div>' +
               '<div class="footer__col"><h4 data-t="footer.contact.h">Contacto</h4>' +
                 '<a href="tel:+541154975453">(+54) 11 5497-5453</a>' +
                 '<a href="mailto:info@maritacardini.com">info@maritacardini.com</a>' +

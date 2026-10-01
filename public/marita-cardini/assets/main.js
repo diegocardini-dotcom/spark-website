@@ -36,18 +36,19 @@
   function finishInstant(){
     if (revealed) return; revealed = true;
     var pl = document.getElementById("preloader"); if (pl) pl.remove();
+    var hbg = document.querySelector(".hero__bg"); if (hbg) hbg.style.opacity = "";
     revealSite(); markReveals(); showAll();
   }
 
   markReveals();
 
-  if (!motionOK || document.hidden) {
+  if (!motionOK) {
     finishInstant();
   } else if (document.getElementById("preloader")) {
-    var tl = gsap.timeline({ onComplete: boot });
+    var tl = gsap.timeline();
     tl.to("#preloader .sig", { clipPath: "inset(0 0% 0 0)", duration: 1.4, ease: "power2.inOut", delay: .3 })
       .to("#preloader .sig", { opacity: 0, duration: .5, ease: "power1.in", delay: .3 })
-      .to("#preloader", { yPercent: -101, duration: .9, ease: "power4.inOut" }, "-=.1")
+      .to("#preloader", { yPercent: -101, duration: .9, ease: "power4.inOut", onStart: boot }, "-=.1")
       .set("#preloader", { display: "none" });
     setTimeout(finishInstant, 6500); // safety backstop
   } else {
@@ -56,6 +57,8 @@
 
   /* hero intro (full-bleed home hero) */
   function heroIntro(){
+    // Reveal the video that was hidden to prevent flash before preloader exits
+    gsap.to(".hero__bg", { opacity: 1, duration: .6, ease: "power2.out" });
     gsap.from(".hero__h1 .line > span", { yPercent: 115, duration: 1.15, ease: "power4.out", stagger: .12, delay: .05 });
     gsap.from([".hero__eyebrow", ".hero__sub", ".hero__cta"], { opacity: 0, y: 22, duration: .9, ease: "power2.out", stagger: .1, delay: .35 });
     gsap.from(".hero__meta", { opacity: 0, duration: 1, ease: "power2.out", delay: .8 });
