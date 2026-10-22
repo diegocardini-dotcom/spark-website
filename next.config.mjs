@@ -14,6 +14,8 @@ const nextConfig = {
       { source: '/marita-cardini/', destination: '/marita-cardini/index.html', permanent: false },
       { source: '/jm-tax-solutions', destination: '/jm-tax-solutions/index.html', permanent: false },
       { source: '/jm-tax-solutions/', destination: '/jm-tax-solutions/index.html', permanent: false },
+      { source: '/parmegiano', destination: '/parmegiano/index.html', permanent: false },
+      { source: '/parmegiano/', destination: '/parmegiano/index.html', permanent: false },
     ];
   },
 };

@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<base href="/parmegiano/">
+<meta name="theme-color" content="#121418">
+<title>El Parmegiano | Fiambres y quesos</title>
+<meta name="description" content="Fiambres, quesos, picadas y bebidas en 10 locales. Distribuidora mayorista y pedidos por WhatsApp.">
+<link rel="icon" href="assets/img/logo-negro.png">
+<link rel="preload" href="assets/fonts2/Besley-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts2/Archivo-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/img/corte-queso.jpg" as="image">
+<link rel="stylesheet" href="assets/styles-v2.css">
+<script>if (/[?&]static/.test(location.search)) document.documentElement.classList.add("static")</script>
+</head>
+<body>
+
+<header class="nav" id="nav">
+  <div class="wrap nav__in">
+    <a href="#top" class="brand" aria-label="El Parmegiano, inicio">
+      <img src="assets/img/logo-blanco.png" alt="">
+      <b>El Parmegiano</b>
+    </a>
+    <nav class="nav__links" aria-label="Principal">
+      <a href="#vitrina">Productos</a>
+      <a href="#picadas">Picadas</a>
+      <a href="#locales">Locales</a>
+      <a href="#mayorista">Mayorista</a>
+      <a href="#franquicias">Franquicias</a>
+    </nav>
+    <div class="nav__right">
+      <button class="btn btn--red" data-chat aria-label="Pedí por WhatsApp"><i class="ph ph-whatsapp-logo"></i><span>Pedí por WhatsApp</span></button>
+      <button class="burger" id="burger" aria-label="Abrir menú"><i class="ph ph-list"></i></button>
+    </div>
+  </div>
+</header>
+
+<nav class="mmenu" id="mmenu" aria-label="Menú">
+  <button class="mmenu__close" id="mclose" aria-label="Cerrar menú"><i class="ph ph-x"></i></button>
+  <a href="#vitrina">Productos</a><a href="#picadas">Picadas</a><a href="#locales">Locales</a><a href="#mayorista">Mayorista</a><a href="#franquicias">Franquicias</a>
+</nav>
+
+<main id="top">
+
+  <section class="hero" aria-labelledby="h-hero">
+    <div class="hero__copy">
+      <h1 class="h1" id="h-hero"><span class="ln">Fiambres y quesos,</span> <span class="ln">al corte.</span></h1>
+      <p class="lede">Diez locales y un solo WhatsApp. Pedí tu picada, sacá número y retirala sin hacer fila.</p>
+      <div class="hero__cta">
+        <button class="btn btn--red" data-chat><i class="ph ph-whatsapp-logo"></i>Pedí por WhatsApp</button>
+        <a class="link" href="#locales">Ver locales <i class="ph ph-arrow-right"></i></a>
+      </div>
+    </div>
+    <div class="hero__media">
+      <img src="assets/img/corte-queso.jpg" alt="Una persona del equipo corta una horma de queso en el mostrador, con salames en primer plano">
+      <div class="led turnero" aria-label="Turnero del mostrador">
+        <div class="led__label tag"><span>Atendiendo</span><span>Mostrador</span></div>
+        <div class="led__digits" id="turno"><span class="ghost" aria-hidden="true">888</span><span class="on">046</span></div>
+        <p>¿Pediste por WhatsApp? Tu pedido ya está en la balanza.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="vitrina" id="vitrina" aria-labelledby="h-vitrina">
+    <div class="wrap vitrina__head">
+      <div>
+        <h2 class="h2 sv" id="h-vitrina">Lo que hay en la vitrina.</h2>
+        <p class="lede sv">Productos frescos, cortados en el momento y con precio de mayorista.</p>
+      </div>
+      <div class="vitrina__nav">
+        <button data-shelf="-1" aria-label="Anterior"><i class="ph ph-arrow-left"></i></button>
+        <button data-shelf="1" aria-label="Siguiente"><i class="ph ph-arrow-right"></i></button>
+      </div>
+    </div>
+    <div class="shelf" id="shelf">
+      <article class="item"><div class="item__img sv-img"><img src="assets/img/salame.jpg" alt="Salames y fiambres en la tabla de corte" loading="lazy"></div><h3 class="h3">Fiambres</h3><p>Crudos, cocidos y embutidos. Al gramo, como los pedís.</p></article>
+      <article class="item"><div class="item__img sv-img"><img src="assets/img/quesos.jpg" alt="Hormas de queso en el mostrador" loading="lazy"></div><h3 class="h3">Quesos</h3><p>Duros, blandos y de máquina, en horma o fraccionados.</p></article>
+      <article class="item"><div class="item__img sv-img"><img src="assets/img/picada-manos.jpg" alt="Picada de fiambres, quesos y aceitunas lista para entregar" loading="lazy"></div><h3 class="h3">Picadas</h3><p>Clásicas, a tu medida o para eventos.</p></article>
+      <article class="item"><div class="item__img sv-img"><img src="assets/img/vinos.jpg" alt="Vinos y conservas sobre la góndola" loading="lazy"></div><h3 class="h3">Bebidas</h3><p>Vinos, cervezas, aperitivos y espumantes, nacionales e importados.</p></article>
+      <article class="item"><div class="item__img sv-img"><img src="assets/img/gondola.jpg" alt="Góndola con conservas, salsas y productos importados" loading="lazy"></div><h3 class="h3">Almacén gourmet</h3><p>Conservas, encurtidos, salsas y productos importados.</p></article>
+      <article class="item"><div class="item__img sv-img"><img src="assets/img/especias.jpg" alt="Especias en cucharas de madera" loading="lazy"></div><h3 class="h3">Especias y frutos secos</h3><p>Para la picada, la cocina y el aperitivo.</p></article>
+    </div>
+  </section>
+
+  <section class="picadas" id="picadas" aria-labelledby="h-picadas">
+    <div class="picadas__img sv-img"><img src="assets/img/jamon-mesa.jpg" alt="Jamón crudo, salames, quesos y vino tinto sobre la mesa" loading="lazy"></div>
+    <div class="picadas__body">
+      <h2 class="h2 sv" id="h-picadas">¿Para cuántos es la picada?</h2>
+      <div class="calc" id="calc">
+        <div class="calc__row">
+          <span>Somos</span>
+          <div class="stepper">
+            <button data-step="-1" aria-label="Una persona menos"><i class="ph ph-minus"></i></button>
+            <output id="ppl" aria-live="polite">12</output>
+            <button data-step="1" aria-label="Una persona más"><i class="ph ph-plus"></i></button>
+          </div>
+          <span>personas</span>
+        </div>
+        <div class="seg" role="group" aria-label="Tipo de picada">
+          <button aria-pressed="true" data-g="200">Es la comida</button>
+          <button aria-pressed="false" data-g="110">Es la entrada</button>
+        </div>
+        <div class="balanza">
+          <div class="led" aria-label="Kilos sugeridos">
+            <div class="led__label tag"><span>Balanza</span><span>Sugerido</span></div>
+            <div><span class="led__digits"><span class="ghost" aria-hidden="true">8.88</span><span class="on" id="kg">2.40</span></span><span class="led__unit">kg</span></div>
+          </div>
+          <div>
+            <p class="balanza__rec" id="rec">Te recomendamos la <b>Picada Clásica</b>, entre fiambres y quesos.</p>
+            <button class="btn btn--red" data-chat="picada"><i class="ph ph-whatsapp-logo"></i>Pedí esta picada</button>
+          </div>
+        </div>
+      </div>
+      <dl class="picadas__types">
+        <div><dt>Clásica</dt><dd>Para recibir a la familia o amigos en casa.</dd></div>
+        <div><dt>A tu medida</dt><dd>La armás con los sabores que más te gustan.</dd></div>
+        <div><dt>Eventos</dt><dd>Para complementar el catering de tu evento.</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="pedidos" id="pedidos" aria-labelledby="h-pedidos">
+    <div class="wrap pedidos__grid">
+      <div>
+        <h2 class="h2 sv" id="h-pedidos">Un solo número para los diez locales.</h2>
+        <p class="lede sv">Escribinos por WhatsApp y te atiende Parme, el asistente de El Parmegiano. Toma tu pedido y lo manda al local que elijas.</p>
+        <ul class="points">
+          <li class="sv"><i class="ph ph-clock"></i>Responde al instante, también de noche y los domingos.</li>
+          <li class="sv"><i class="ph ph-map-pin"></i>Tu pedido llega directo al equipo del local que elegís.</li>
+          <li class="sv"><i class="ph ph-user-sound"></i>Si hace falta, te atiende una persona del equipo.</li>
+        </ul>
+        <button class="btn btn--chalk" data-chat>Probá el chat</button>
+      </div>
+      <div class="phone sv">
+        <div class="screen">
+          <div class="wa-head"><img src="assets/img/logo-blanco.png" alt=""><div><b>El Parmegiano</b><small>Cuenta de empresa</small></div></div>
+          <div class="chat" id="demoChat" aria-live="polite"></div>
+          <div class="wa-input"><div>Mensaje</div><span><i class="ph ph-paper-plane-right"></i></span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="locales" id="locales" aria-labelledby="h-locales">
+    <div class="wrap">
+      <h2 class="h2 sv" id="h-locales">Diez locales. Uno te queda cerca.</h2>
+      <p class="lede sv">Mostrador, delivery y take away. Mirá cuál está abierto ahora y pedí directo a ese local.</p>
+      <div class="locales__grid">
+        <div class="zones" id="zones"></div>
+        <figure class="locpic" id="locpic">
+          <div class="locpic__frame" id="locframe"></div>
+          <figcaption id="loccap"></figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="mayorista" id="mayorista" aria-labelledby="h-mayorista">
+    <div class="wrap mayorista__grid">
+      <div>
+        <h2 class="h2 sv" id="h-mayorista">Abastecemos a los que abastecen.</h2>
+        <p class="lede sv">Distribuidora mayorista para supermercados, almacenes, carnicerías, fiambrerías y todo tipo de comercios.</p>
+        <dl class="facts">
+          <div class="sv"><dt>20 años</dt><dd>de trayectoria en el mercado.</dd></div>
+          <div class="sv"><dt>Frío propio</dt><dd>Vehículos refrigerados habilitados.</dd></div>
+          <div class="sv"><dt>Asesoramiento</dt><dd>Un vendedor que conoce tu rubro.</dd></div>
+          <div class="sv"><dt>La Paulina</dt><dd>Distribuidor oficial en Pilar.</dd></div>
+        </dl>
+        <div class="mayorista__cta">
+          <button class="btn btn--red" data-chat="mayorista">Quiero ser cliente</button>
+          <span class="paulina"><img src="assets/img/la-paulina.jpg" alt="La Paulina, distribuidor oficial"></span>
+        </div>
+      </div>
+      <div class="mayorista__pics">
+        <img class="sv-img" src="assets/img/deposito-2.jpg" alt="Estanterías del depósito de la distribuidora" loading="lazy">
+        <img class="sv-img" src="assets/img/deposito.jpg" alt="Preparación de un pedido mayorista" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <section class="franq" id="franquicias" aria-labelledby="h-franq">
+    <img src="assets/img/interior-punta-chica.jpg" alt="Interior de un local con el cartel de El Parmegiano sobre pared verde" loading="lazy">
+    <div class="wrap">
+      <h2 class="h2 sv" id="h-franq">Abrí tu propio Parmegiano.</h2>
+      <p class="lede sv">Un modelo probado en diez locales, con marca, logística y abastecimiento desde la casa central en Escobar.</p>
+      <button class="btn btn--chalk sv" data-chat="franquicia">Quiero información</button>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot__top">
+      <h2 class="h2">¿Picamos algo?</h2>
+      <button class="btn btn--red" data-chat><i class="ph ph-whatsapp-logo"></i>Pedí por WhatsApp</button>
+    </div>
+    <div class="foot__cols">
+      <div><img src="assets/img/logo-blanco.png" alt="El Parmegiano, tienda de alimentos. Fiambres y quesos."></div>
+      <div><h4>Tienda</h4><a href="#vitrina">Productos</a><a href="#picadas">Picadas</a><a href="#locales">Locales</a></div>
+      <div><h4>Empresa</h4><a href="#mayorista">Distribuidora mayorista</a><a href="#franquicias">Franquicias</a><a href="#">Trabajá con nosotros</a></div>
+      <div><h4>Contacto</h4><a href="mailto:info@elparmegiano.com"><i class="ph ph-envelope-simple"></i>info@elparmegiano.com</a><a href="https://www.instagram.com/elparmegiano/" target="_blank" rel="noopener"><i class="ph ph-instagram-logo"></i>@elparmegiano</a><p>Casa central en Escobar, Buenos Aires</p></div>
+    </div>
+    <div class="foot__legal"><span>© 2026 El Parmegiano. Todos los derechos reservados.</span><span>Concepto de rediseño por Spark</span></div>
+  </div>
+</footer>
+
+<button class="fab" data-chat aria-label="Abrir chat de WhatsApp"><i class="ph ph-whatsapp-logo"></i></button>
+
+<div class="widget" id="widget" role="dialog" aria-label="Chat de WhatsApp con El Parmegiano">
+  <div class="widget__note">Demo del asistente, propuesta de Spark</div>
+  <div class="wa-head">
+    <img src="assets/img/logo-blanco.png" alt="">
+    <div><b>El Parmegiano</b><small>Responde Parme, el asistente</small></div>
+    <button id="wclose" aria-label="Cerrar chat"><i class="ph ph-x"></i></button>
+  </div>
+  <div class="chat" id="wchat" aria-live="polite"></div>
+  <div class="qr" id="wqr"></div>
+</div>
+
+<script src="assets/main-v2.js"></script>
+</body>
+</html>

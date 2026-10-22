@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<base href="/parmegiano/">
+<title>El Parmegiano × Spark — Propuesta</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+@page { size: 1920px 1080px; margin: 0; }
+:root {
+  --ink: #15120f; --ink-soft: #4a4139; --paper: #f4eee3; --paper-2: #ebe3d5; --cream: #fffaf0;
+  --rojo: #b0301f; --oro: #d9a441; --moss: #3d4a2b; --wa: #1fa855; --spark: #f8d347;
+  --line: rgba(21,18,15,.14); --line-inv: rgba(255,250,240,.16);
+  --serif: "Fraunces", Georgia, serif; --sans: "Instrument Sans", system-ui, sans-serif; --mono: "DM Mono", monospace;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; background: #777; }
+body { font-family: var(--sans); color: var(--ink); -webkit-font-smoothing: antialiased; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+img { display: block; max-width: 100%; }
+.s { width: 1920px; height: 1080px; position: relative; overflow: hidden; background: var(--paper); padding: 96px 120px; page-break-after: always; break-after: page; margin: 0 auto 24px; display: flex; flex-direction: column; justify-content: center; }
+.s > .lbl { align-self: flex-start; }
+@media print { .s { margin: 0; } html, body { background: none; } }
+.s.dark { background: var(--ink); color: var(--cream); }
+.s.moss { background: var(--moss); color: var(--cream); }
+.s.p2 { background: var(--paper-2); }
+.lbl { font-family: var(--mono); font-size: 18px; letter-spacing: .16em; text-transform: uppercase; display: inline-flex; gap: 14px; align-items: center; }
+.lbl::before { content: ""; width: 34px; height: 1.5px; background: currentColor; opacity: .6; }
+.d { font-family: var(--serif); font-variation-settings: "opsz" 144, "SOFT" 30; font-weight: 420; letter-spacing: -.035em; line-height: .95; margin: 0; }
+.d em { font-style: italic; font-weight: 350; color: var(--rojo); font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1; }
+.dark .d em, .moss .d em { color: var(--oro); }
+.h1 { font-size: 132px; } .h2 { font-size: 96px; } .h3 { font-size: 64px; }
+.lead { font-size: 30px; line-height: 1.42; color: var(--ink-soft); max-width: 30em; }
+.dark .lead, .moss .lead { color: rgba(255,250,240,.72); }
+.foot { position: absolute; left: 120px; right: 120px; bottom: 44px; display: flex; justify-content: space-between; font-family: var(--mono); font-size: 15px; letter-spacing: .14em; text-transform: uppercase; opacity: .5; }
+.shot { border-radius: 14px; overflow: hidden; box-shadow: 0 40px 80px -40px rgba(21,18,15,.55), 0 0 0 1px rgba(21,18,15,.08); background: #fff; }
+.shot img { width: 100%; }
+.browser { border-radius: 14px; overflow: hidden; box-shadow: 0 50px 90px -40px rgba(21,18,15,.6); background: #fff; }
+.browser .bar { height: 40px; background: #e9e4dc; display: flex; align-items: center; gap: 8px; padding: 0 16px; }
+.browser .bar i { width: 12px; height: 12px; border-radius: 50%; background: #cfc6b8; }
+.browser .bar span { margin-left: 18px; font-family: var(--mono); font-size: 14px; color: #8b8176; background: #f6f2ec; padding: 5px 16px; border-radius: 99px; }
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 90px; align-items: center; height: 100%; }
+ul.clean { list-style: none; padding: 0; margin: 0; }
+.rows li { display: grid; grid-template-columns: 70px 1fr; gap: 20px; padding: 24px 0; border-top: 1px solid var(--line); font-size: 25px; line-height: 1.4; }
+.dark .rows li, .moss .rows li { border-color: var(--line-inv); }
+.rows li b { display: block; font-size: 27px; margin-bottom: 4px; }
+.rows .n { font-family: var(--mono); font-size: 18px; opacity: .5; padding-top: 6px; }
+.rows li span { color: var(--ink-soft); }
+.dark .rows li span, .moss .rows li span { color: rgba(255,250,240,.66); }
+.tag { display: inline-block; font-family: var(--mono); font-size: 15px; letter-spacing: .1em; text-transform: uppercase; padding: 8px 14px; border-radius: 99px; background: var(--ink); color: var(--cream); }
+.ticket { background: var(--cream); color: var(--ink); padding: 26px 28px; width: 300px; font-family: var(--mono); font-size: 14px; letter-spacing: .08em; text-transform: uppercase; box-shadow: 0 30px 60px -30px rgba(0,0,0,.6); transform: rotate(4deg); }
+.ticket .num { font-family: var(--serif); font-size: 110px; line-height: 1; letter-spacing: -.04em; color: var(--rojo); margin: 10px 0 14px; text-transform: none; }
+.ticket .cut { border-top: 2px dashed rgba(21,18,15,.3); margin: 14px -28px; }
+.ticket p { margin: 0; font-family: var(--sans); text-transform: none; letter-spacing: 0; font-size: 18px; font-weight: 500; line-height: 1.35; }
+</style>
+</head>
+<body>
+
+<!-- 01 COVER -->
+<section class="s dark" style="padding:0">
+  <img src="../assets/img/picada-manos.jpg" style="position:absolute;right:0;top:0;width:52%;height:100%;object-fit:cover;opacity:.92">
+  <div style="position:absolute;right:0;top:0;width:52%;height:100%;background:linear-gradient(90deg,#15120f 0%,rgba(21,18,15,.15) 40%,transparent)"></div>
+  <div style="position:absolute;left:120px;top:96px;display:flex;align-items:center;gap:28px">
+    <img src="../assets/img/logo-blanco.png" style="width:110px">
+    <span style="font-family:var(--serif);font-size:40px;opacity:.5">×</span>
+    <img src="shots/spark-logo.png" style="width:170px">
+  </div>
+  <div style="position:absolute;left:120px;bottom:150px;width:1000px">
+    <span class="lbl" style="color:var(--oro)">Propuesta · Octubre 2026</span>
+    <h1 class="d" style="font-size:150px;margin:30px 0 36px">Del mostrador<br>al <em>WhatsApp.</em></h1>
+    <p class="lead" style="font-size:32px;max-width:24em">Rediseño del sitio web, CRM central y un asistente de WhatsApp para los 10 locales de El Parmegiano.</p>
+  </div>
+  <div class="ticket" style="position:absolute;right:120px;bottom:120px">
+    <div style="display:flex;justify-content:space-between;opacity:.6"><span>El Parmegiano</span><span>Su número</span></div>
+    <div class="num">047</div><div class="cut"></div>
+    <p>Saltá la fila: pedí por WhatsApp y retirá listo.</p>
+  </div>
+</section>
+
+<!-- 02 LO QUE CONSTRUYERON -->
+<section class="s">
+  <span class="lbl">01 · Punto de partida</span>
+  <h2 class="d h2" style="margin:28px 0 0;max-width:15em">Ya construyeron una marca física <em>impecable.</em></h2>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:64px">
+    <img src="../assets/img/local-maschwitz.jpg" style="height:400px;width:100%;object-fit:cover;border-radius:10px">
+    <img src="../assets/img/local-pilar.jpg" style="height:400px;width:100%;object-fit:cover;border-radius:10px">
+    <img src="../assets/img/local-tortugas.jpg" style="height:400px;width:100%;object-fit:cover;border-radius:10px">
+    <img src="../assets/img/deposito-2.jpg" style="height:400px;width:100%;object-fit:cover;border-radius:10px">
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:34px">
+    <div><b class="d" style="font-size:64px;display:block">20 años</b><span style="font-size:22px;color:var(--ink-soft)">de trayectoria</span></div>
+    <div><b class="d" style="font-size:64px;display:block">10 locales</b><span style="font-size:22px;color:var(--ink-soft)">de Zárate a Devoto</span></div>
+    <div><b class="d" style="font-size:64px;display:block">Mayorista</b><span style="font-size:22px;color:var(--ink-soft)">frío propio y distribución oficial La Paulina</span></div>
+    <div><b class="d" style="font-size:64px;display:block">Escobar</b><span style="font-size:22px;color:var(--ink-soft)">una casa central que maneja todo</span></div>
+  </div>
+  <div class="foot"><span>El Parmegiano × Spark</span><span>02</span></div>
+</section>
+
+<!-- 03 DIAGNÓSTICO -->
+<section class="s p2">
+  <div class="grid2" style="grid-template-columns:1.1fr .9fr;gap:80px">
+    <div>
+      <div class="browser"><div class="bar"><i></i><i></i><i></i><span>elparmegiano.com</span></div><img src="shots/actual-desktop.jpg"></div>
+      <p style="font-family:var(--mono);font-size:16px;letter-spacing:.1em;text-transform:uppercase;opacity:.55;margin-top:22px">Sitio actual · captura del 22/10/2026</p>
+    </div>
+    <div>
+      <span class="lbl">02 · Diagnóstico</span>
+      <h2 class="d h3" style="margin:24px 0 36px">Lo digital se quedó <em>en 2018.</em></h2>
+      <ul class="clean rows">
+        <li><span class="n">A</span><div><b>No transmite la marca</b><span>El hero dice "Home · Inicio". Las fachadas nuevas no aparecen en la portada.</span></div></li>
+        <li><span class="n">B</span><div><b>Información que se contradice</b><span>La home nombra Benavidez, la página de locales nombra Zárate y el formulario ofrece Nordelta.</span></div></li>
+        <li><span class="n">C</span><div><b>No vende</b><span>No hay pedidos ni picadas online: los formularios terminan en un email.</span></div></li>
+        <li><span class="n">D</span><div><b>No captura datos</b><span>Mayoristas, franquicias y CVs llegan sueltos, sin seguimiento.</span></div></li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot"><span>El Parmegiano × Spark</span><span>03</span></div>
+</section>
+
+<!-- 04 EL PROBLEMA: WHATSAPP -->
+<section class="s dark">
+  <span class="lbl" style="color:var(--oro)">03 · El cuello de botella</span>
+  <h2 class="d" style="font-size:86px;margin:24px 0 20px;max-width:16em">Hoy un cliente tiene <em>10 números</em> para elegir.</h2>
+  <p class="lead" style="max-width:34em">Cada local atiende con su propio WhatsApp o teléfono, desde el celular del equipo. La venta pasa por ahí, pero casa central no la ve.</p>
+  <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:40px;font-family:var(--mono);font-size:19px">
+    <div style="border:1px solid var(--line-inv);border-radius:12px;padding:18px 20px">Maschwitz<br><span style="opacity:.55">+54 9 11 6780…</span></div>
+    <div style="border:1px solid var(--line-inv);border-radius:12px;padding:18px 20px">Loma Verde<br><span style="opacity:.55">+54 9 11 4187…</span></div>
+    <div style="border:1px solid var(--line-inv);border-radius:12px;padding:18px 20px">Tortugas<br><span style="opacity:.55">+54 9 11 5946…</span></div>
+    <div style="border:1px solid var(--line-inv);border-radius:12px;padding:18px 20px">Pilar<br><span style="opacity:.55">+54 9 11 3945…</span></div>
+    <div style="border:1px solid var(--line-inv);border-radius:12px;padding:18px 20px">Ituzaingó<br><span style="opacity:.55">+54 9 11 6805…</span></div>
+    <div style="border:1px solid var(--line-inv);border-radius:12px;padding:18px 20px">Devoto<br><span style="opacity:.55">+54 9 11 3212…</span></div>
+    <div style="border:1px solid var(--line-inv);border-radius:12px;padding:18px 20px">Martínez<br><span style="opacity:.55">011 15-2778…</span></div>
+    <div style="border:1px solid var(--line-inv);border-radius:12px;padding:18px 20px">Punta Chica<br><span style="opacity:.55">11 3956…</span></div>
+    <div style="border:1px solid var(--line-inv);border-radius:12px;padding:18px 20px">Zárate<br><span style="opacity:.55">0348 766…</span></div>
+    <div style="border:1px solid var(--line-inv);border-radius:12px;padding:18px 20px">Campana<br><span style="opacity:.55">0348 963…</span></div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:50px;margin-top:44px;margin-bottom:30px">
+    <div style="border-top:2px solid var(--oro);padding-top:20px;font-size:24px;line-height:1.4"><b style="font-family:var(--serif);font-weight:400;font-size:38px;display:block;margin-bottom:8px">Fuera de horario</b><span style="opacity:.7">Después de las 21 hs, los domingos a la tarde y al mediodía en Zárate y Campana, nadie responde.</span></div>
+    <div style="border-top:2px solid var(--oro);padding-top:20px;font-size:24px;line-height:1.4"><b style="font-family:var(--serif);font-weight:400;font-size:38px;display:block;margin-bottom:8px">Sin registro</b><span style="opacity:.7">Los contactos quedan en 10 teléfonos. No hay base de clientes de la marca.</span></div>
+    <div style="border-top:2px solid var(--oro);padding-top:20px;font-size:24px;line-height:1.4"><b style="font-family:var(--serif);font-weight:400;font-size:38px;display:block;margin-bottom:8px">Sin métricas</b><span style="opacity:.7">Nadie sabe cuántas consultas entran, cuánto tardan en responderse ni cuántas se pierden.</span></div>
+  </div>
+  <div class="foot"><span>El Parmegiano × Spark</span><span>04</span></div>
+</section>
+
+<!-- 05 PROPUESTA 3 PILARES -->
+<section class="s">
+  <span class="lbl">04 · La propuesta</span>
+  <h2 class="d h2" style="margin:28px 0 70px">Un sistema, <em>tres piezas.</em></h2>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:28px">
+    <div style="background:var(--cream);border-radius:20px;padding:44px;height:560px;display:flex;flex-direction:column;border:1px solid var(--line)">
+      <span style="font-family:var(--mono);font-size:18px;opacity:.5">01</span>
+      <h3 class="d" style="font-size:62px;margin:26px 0 20px">Sitio web<br><em>nuevo</em></h3>
+      <p style="font-size:24px;line-height:1.45;color:var(--ink-soft);margin:0">La vidriera de la marca: estética a la altura de los locales, mobile first, con locales en vivo y pedidos por WhatsApp en cada botón.</p>
+      <span class="tag" style="margin-top:auto;align-self:flex-start">Atrae</span>
+    </div>
+    <div style="background:var(--ink);color:var(--cream);border-radius:20px;padding:44px;height:560px;display:flex;flex-direction:column">
+      <span style="font-family:var(--mono);font-size:18px;opacity:.5">02</span>
+      <h3 class="d" style="font-size:62px;margin:26px 0 20px">Asistente de<br><em style="color:var(--oro)">WhatsApp</em></h3>
+      <p style="font-size:24px;line-height:1.45;color:rgba(255,250,240,.72);margin:0">"Parme" responde 24/7, toma pedidos y picadas, deriva al local correcto y califica mayoristas y franquicias.</p>
+      <span class="tag" style="margin-top:auto;align-self:flex-start;background:var(--wa)">Atiende</span>
+    </div>
+    <div style="background:var(--moss);color:var(--cream);border-radius:20px;padding:44px;height:560px;display:flex;flex-direction:column">
+      <span style="font-family:var(--mono);font-size:18px;opacity:.5">03</span>
+      <h3 class="d" style="font-size:62px;margin:26px 0 20px">CRM en<br><em style="color:var(--oro)">casa central</em></h3>
+      <p style="font-size:24px;line-height:1.45;color:rgba(255,250,240,.72);margin:0">Escobar ve todas las conversaciones, pedidos y oportunidades de los 10 locales en un solo lugar, con métricas por local.</p>
+      <span class="tag" style="margin-top:auto;align-self:flex-start;background:var(--oro);color:var(--ink)">Controla</span>
+    </div>
+  </div>
+  <div class="foot"><span>El Parmegiano × Spark</span><span>05</span></div>
+</section>
+
+<!-- 06 SITIO: HERO -->
+<section class="s p2" style="padding:80px 120px">
+  <div style="display:flex;justify-content:space-between;align-items:end;margin-bottom:40px">
+    <div><span class="lbl">05 · Pieza 1 · Sitio web</span><h2 class="d h3" style="margin-top:18px">Fiambres & quesos, <em>al corte.</em></h2></div>
+    <p style="font-size:22px;color:var(--ink-soft);max-width:30em;margin:0;text-align:right">Concepto "almacén moderno": papel de fiambrería, negro pizarra como las fachadas nuevas y el ticket de turno del mostrador como hilo conductor.</p>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 300px;gap:40px;align-items:start">
+    <div class="browser"><div class="bar"><i></i><i></i><i></i><span>elparmegiano.com</span></div><img src="shots/home-top.jpg" style="height:690px;width:100%;object-fit:cover;object-position:top"></div>
+    <div class="shot" style="border-radius:36px;border:10px solid #15120f"><img src="shots/mobile-hero.jpg" style="height:650px;object-fit:cover;object-position:top"></div>
+  </div>
+</section>
+
+<!-- 07 SITIO: SECCIONES -->
+<section class="s">
+  <span class="lbl">06 · Lo que hace el sitio</span>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:36px;margin-top:40px">
+    <div>
+      <div class="shot"><img src="shots/locales.jpg" style="height:420px;width:100%;object-fit:cover;object-position:top"></div>
+      <h3 class="d" style="font-size:40px;margin:26px 0 10px">Locales en vivo</h3>
+      <p style="font-size:22px;color:var(--ink-soft);margin:0;line-height:1.45">Filtro por zona, "abierto ahora" calculado con el horario real y botón "Pedir acá" que abre el chat ya ubicado en ese local.</p>
+    </div>
+    <div>
+      <div class="shot"><img src="shots/picadas.jpg" style="height:420px;width:100%;object-fit:cover;object-position:top"></div>
+      <h3 class="d" style="font-size:40px;margin:26px 0 10px">Calculadora de picadas</h3>
+      <p style="font-size:22px;color:var(--ink-soft);margin:0;line-height:1.45">El cliente elige cuántas personas son y ve los kilos sugeridos y la picada recomendada. Un clic y la pide por WhatsApp.</p>
+    </div>
+  </div>
+  <div style="display:flex;gap:16px;margin-top:40px;flex-wrap:wrap">
+    <span class="tag">Mobile first</span><span class="tag">SEO local por cada local</span><span class="tag">Captación mayorista</span><span class="tag">Franquicias</span><span class="tag">Autoadministrable</span><span class="tag">Carga en &lt; 2 s</span>
+  </div>
+  <div class="foot"><span>El Parmegiano × Spark</span><span>07</span></div>
+</section>
+
+<!-- 08 AGENTE -->
+<section class="s p2" style="padding:80px 120px">
+  <div style="display:grid;grid-template-columns:460px 1fr;gap:60px;align-items:center;height:100%">
+    <div>
+      <span class="lbl">07 · Pieza 2 · WhatsApp</span>
+      <h2 class="d" style="font-size:80px;margin:26px 0 28px">Así se ve <em>en el sitio.</em></h2>
+      <p style="font-size:24px;line-height:1.45;color:var(--ink-soft);margin:0">El cliente pide una picada para 12, elige Pilar y retira a las 19 hs. El pedido llega al equipo del local y queda registrado en el CRM.</p>
+      <p style="font-family:var(--mono);font-size:16px;letter-spacing:.08em;text-transform:uppercase;opacity:.55;margin-top:30px">En el mockup se puede probar el chat en vivo</p>
+    </div>
+    <div class="browser"><div class="bar"><i></i><i></i><i></i><span>elparmegiano.com/#pedidos</span></div><img src="shots/agente.jpg"></div>
+  </div>
+  <div class="foot"><span>El Parmegiano × Spark</span><span>08</span></div>
+</section>
+
+<!-- 09 QUÉ RESUELVE EL AGENTE -->
+<section class="s dark">
+  <div class="grid2" style="grid-template-columns:.9fr 1.1fr;gap:100px;align-items:start">
+    <div>
+      <span class="lbl" style="color:var(--oro)">08 · Qué resuelve Parme</span>
+      <h2 class="d h2" style="margin:28px 0 30px">Atiende como<br>el mejor del <em>mostrador.</em></h2>
+      <p class="lead" style="font-size:27px">Entrenado con el catálogo, los horarios, las zonas de envío y el tono de la marca. Nunca inventa precios: lo que no sabe, lo pasa a una persona.</p>
+    </div>
+    <ul class="clean rows" style="margin-top:20px">
+      <li><span class="n">01</span><div><b>Pedidos y picadas</b><span>Toma el pedido "como en el mostrador", sugiere kilos y lo envía al local elegido.</span></div></li>
+      <li><span class="n">02</span><div><b>Locales y horarios</b><span>Responde dónde queda, si está abierto y quién hace envíos a cada zona.</span></div></li>
+      <li><span class="n">03</span><div><b>Clientes mayoristas</b><span>Pregunta rubro, zona y volumen, y asigna el contacto a un vendedor.</span></div></li>
+      <li><span class="n">04</span><div><b>Franquicias</b><span>Califica al interesado y lo deja en el pipeline de expansión de casa central.</span></div></li>
+      <li><span class="n">05</span><div><b>Eventos, reclamos y CVs</b><span>Deriva a la persona correcta con todo el contexto de la conversación.</span></div></li>
+    </ul>
+  </div>
+  <div class="foot"><span>El Parmegiano × Spark</span><span>09</span></div>
+</section>
+
+<!-- 10 FLUJO -->
+<section class="s">
+  <span class="lbl">09 · Cómo fluye una conversación</span>
+  <h2 class="d h3" style="margin:22px 0 70px">Un número de marca, <em>cada consulta a su lugar.</em></h2>
+  <div style="display:grid;grid-template-columns:300px 80px 360px 80px 1fr;align-items:center">
+    <div style="background:var(--cream);border:1px solid var(--line);border-radius:20px;padding:34px;text-align:center">
+      <div style="font-size:60px">💬</div><b style="font-family:var(--serif);font-weight:400;font-size:36px;display:block;margin-top:8px">Cliente</b><span style="font-size:20px;color:var(--ink-soft)">WhatsApp, web o Instagram</span>
+    </div>
+    <div style="height:2px;background:var(--ink);position:relative"><span style="position:absolute;right:-4px;top:-9px;font-size:20px">▶</span></div>
+    <div style="background:var(--ink);color:var(--cream);border-radius:20px;padding:40px;text-align:center">
+      <img src="../assets/img/logo-blanco.png" style="width:110px;margin:0 auto 16px">
+      <b style="font-family:var(--serif);font-weight:400;font-size:44px;display:block">Parme</b><span style="font-size:20px;opacity:.7">asistente con IA · 24/7</span>
+    </div>
+    <div style="height:2px;background:var(--ink);position:relative"><span style="position:absolute;right:-4px;top:-9px;font-size:20px">▶</span></div>
+    <div style="display:grid;gap:14px">
+      <div style="border:1px solid var(--line);border-radius:14px;padding:20px 26px;display:flex;justify-content:space-between;font-size:24px;background:var(--cream)"><b>Pedido / picada</b><span style="color:var(--ink-soft)">→ equipo del local elegido</span></div>
+      <div style="border:1px solid var(--line);border-radius:14px;padding:20px 26px;display:flex;justify-content:space-between;font-size:24px;background:var(--cream)"><b>Mayorista</b><span style="color:var(--ink-soft)">→ vendedores de la distribuidora</span></div>
+      <div style="border:1px solid var(--line);border-radius:14px;padding:20px 26px;display:flex;justify-content:space-between;font-size:24px;background:var(--cream)"><b>Franquicia</b><span style="color:var(--ink-soft)">→ expansión, casa central</span></div>
+      <div style="border:1px solid var(--line);border-radius:14px;padding:20px 26px;display:flex;justify-content:space-between;font-size:24px;background:var(--cream)"><b>Evento</b><span style="color:var(--ink-soft)">→ equipo de eventos</span></div>
+      <div style="border:1px solid var(--line);border-radius:14px;padding:20px 26px;display:flex;justify-content:space-between;font-size:24px;background:var(--cream)"><b>Reclamo / CV</b><span style="color:var(--ink-soft)">→ persona responsable</span></div>
+    </div>
+  </div>
+  <div style="margin-top:60px;background:var(--moss);color:var(--cream);border-radius:16px;padding:26px 34px;font-size:24px;display:flex;gap:20px;align-items:center">
+    <span class="tag" style="background:var(--oro);color:var(--ink)">CRM</span> Todo queda registrado: contacto, conversación, local, etapa y responsable. Casa central lo ve en tiempo real.
+  </div>
+  <div class="foot"><span>El Parmegiano × Spark</span><span>10</span></div>
+</section>
+
+<!-- 11 CRM -->
+<section class="s moss">
+  <div class="grid2" style="align-items:start;gap:100px">
+    <div>
+      <span class="lbl" style="color:var(--oro)">10 · Pieza 3 · CRM en casa central</span>
+      <h2 class="d h2" style="margin:28px 0 30px">Escobar ve <em>todo.</em><br>Cada local, lo suyo.</h2>
+      <p class="lead" style="font-size:27px">Una sola plataforma con bandeja unificada, pipelines y reportes. Casa central administra marca, catálogo y asistente; cada local opera sus pedidos con un usuario restringido.</p>
+    </div>
+    <ul class="clean rows" style="margin-top:20px">
+      <li><span class="n">01</span><div><b>Bandeja unificada</b><span>WhatsApp, Instagram, Facebook y formularios web en un mismo lugar.</span></div></li>
+      <li><span class="n">02</span><div><b>Pipelines</b><span>Pedidos por local, Mayoristas, Franquicias y Eventos, con etapas y responsables.</span></div></li>
+      <li><span class="n">03</span><div><b>Tablero por local</b><span>Conversaciones, pedidos, tiempo de respuesta y consultas fuera de horario.</span></div></li>
+      <li><span class="n">04</span><div><b>Base de clientes propia</b><span>Segmentada por local y por gustos, para campañas de WhatsApp y un club de beneficios como el Círculo Parmegiano.</span></div></li>
+      <li><span class="n">05</span><div><b>Seguimientos automáticos</b><span>Recordatorio de retiro, pedido de reseña en Google y reactivación de clientes.</span></div></li>
+    </ul>
+  </div>
+  <div class="foot"><span>El Parmegiano × Spark</span><span>11</span></div>
+</section>
+
+<!-- 12 FRANQUICIAS -->
+<section class="s">
+  <span class="lbl">11 · El modelo para franquicias</span>
+  <h2 class="d h3" style="margin:22px 0 56px">Dos formas de implementarlo. <em>Recomendamos la A.</em></h2>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px">
+    <div style="background:var(--ink);color:var(--cream);border-radius:22px;padding:50px;position:relative">
+      <span class="tag" style="background:var(--oro);color:var(--ink);position:absolute;top:44px;right:44px">Recomendado</span>
+      <span style="font-family:var(--mono);font-size:20px;opacity:.6">A</span>
+      <h3 class="d" style="font-size:54px;margin:16px 0 22px">Un número de marca</h3>
+      <p style="font-size:24px;line-height:1.45;color:rgba(255,250,240,.75);margin:0 0 26px">Un WhatsApp central de El Parmegiano en el sitio, Instagram y cartelería. Parme detecta la zona y deriva al local. Cada franquiciado ve solo su bandeja.</p>
+      <ul class="clean" style="font-size:22px;line-height:1.9;color:rgba(255,250,240,.85)"><li>✓ Imagen de marca unificada</li><li>✓ Base de clientes de la marca, no del celular de un empleado</li><li>✓ Métricas comparables entre locales</li></ul>
+    </div>
+    <div style="background:var(--cream);border:1px solid var(--line);border-radius:22px;padding:50px">
+      <span style="font-family:var(--mono);font-size:20px;opacity:.6">B</span>
+      <h3 class="d" style="font-size:54px;margin:16px 0 22px">Número por local</h3>
+      <p style="font-size:24px;line-height:1.45;color:var(--ink-soft);margin:0 0 26px">Cada local conserva su número actual, conectado a la misma plataforma y al mismo asistente. Útil si un franquiciado necesita mantener su línea.</p>
+      <ul class="clean" style="font-size:22px;line-height:1.9;color:var(--ink-soft)"><li>✓ Cero cambio para el cliente habitual</li><li>— 10 conexiones para mantener</li><li>— La marca sigue dispersa en 10 números</li></ul>
+    </div>
+  </div>
+  <p style="font-size:21px;color:var(--ink-soft);margin-top:34px">Se pueden combinar: número de marca para lo nuevo y los números de cada local conectados de a uno. Cada migración se coordina con el local para no cortar la atención.</p>
+  <div class="foot"><span>El Parmegiano × Spark</span><span>12</span></div>
+</section>
+
+<!-- 13 ROADMAP -->
+<section class="s p2">
+  <span class="lbl">12 · Plan de trabajo</span>
+  <h2 class="d h2" style="margin:28px 0 70px">De la reunión al aire <em>en 8 semanas.</em></h2>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:2px solid var(--ink)">
+    <div style="padding:34px 34px 0 0"><span style="font-family:var(--mono);font-size:18px;opacity:.55">Semanas 1–2</span><h3 class="d" style="font-size:42px;margin:14px 0 14px">Relevamiento</h3><p style="font-size:22px;line-height:1.45;color:var(--ink-soft);margin:0">Catálogo, precios, horarios, zonas de envío, tono de marca y fotos. Definimos el modelo de números.</p></div>
+    <div style="padding:34px 34px 0;border-left:1px solid var(--line)"><span style="font-family:var(--mono);font-size:18px;opacity:.55">Semanas 3–5</span><h3 class="d" style="font-size:42px;margin:14px 0 14px">Sitio + CRM</h3><p style="font-size:22px;line-height:1.45;color:var(--ink-soft);margin:0">Diseño final y desarrollo del sitio. Configuración de pipelines, usuarios y tableros.</p></div>
+    <div style="padding:34px 34px 0;border-left:1px solid var(--line)"><span style="font-family:var(--mono);font-size:18px;opacity:.55">Semanas 4–6</span><h3 class="d" style="font-size:42px;margin:14px 0 14px">Piloto</h3><p style="font-size:22px;line-height:1.45;color:var(--ink-soft);margin:0">Parme en 2 locales cercanos a casa central (Maschwitz y Pilar). Ajustamos con conversaciones reales.</p></div>
+    <div style="padding:34px 0 0 34px;border-left:1px solid var(--line)"><span style="font-family:var(--mono);font-size:18px;opacity:.55">Semanas 7–8</span><h3 class="d" style="font-size:42px;margin:14px 0 14px">Los 10 locales</h3><p style="font-size:22px;line-height:1.45;color:var(--ink-soft);margin:0">Despliegue a toda la red, capacitación de cada equipo y lanzamiento del sitio.</p></div>
+  </div>
+  <div style="margin-top:70px;display:flex;gap:16px;align-items:center;font-size:24px"><span class="tag">Después</span> Mejora continua mensual: nuevas respuestas, campañas, reportes y optimización del sitio.</div>
+  <div class="foot"><span>El Parmegiano × Spark</span><span>13</span></div>
+</section>
+
+<!-- 14 MÉTRICAS -->
+<section class="s dark">
+  <span class="lbl" style="color:var(--oro)">13 · Cómo medimos el éxito</span>
+  <h2 class="d h2" style="margin:28px 0 70px">Lo que hoy no se ve, <em>se mide.</em></h2>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px">
+    <div style="border:1px solid var(--line-inv);border-radius:18px;padding:36px"><b class="d" style="font-size:46px;display:block;margin-bottom:12px">1ª respuesta</b><span style="font-size:22px;opacity:.7;line-height:1.45">Tiempo hasta la primera respuesta, por local y por franja horaria.</span></div>
+    <div style="border:1px solid var(--line-inv);border-radius:18px;padding:36px"><b class="d" style="font-size:46px;display:block;margin-bottom:12px">Pedidos por WhatsApp</b><span style="font-size:22px;opacity:.7;line-height:1.45">Cantidad y valor estimado de pedidos y picadas por local.</span></div>
+    <div style="border:1px solid var(--line-inv);border-radius:18px;padding:36px"><b class="d" style="font-size:46px;display:block;margin-bottom:12px">Fuera de horario</b><span style="font-size:22px;opacity:.7;line-height:1.45">Consultas atendidas cuando el local está cerrado, que hoy se pierden.</span></div>
+    <div style="border:1px solid var(--line-inv);border-radius:18px;padding:36px"><b class="d" style="font-size:46px;display:block;margin-bottom:12px">Resueltas por Parme</b><span style="font-size:22px;opacity:.7;line-height:1.45">Porcentaje de conversaciones cerradas sin intervención humana.</span></div>
+    <div style="border:1px solid var(--line-inv);border-radius:18px;padding:36px"><b class="d" style="font-size:46px;display:block;margin-bottom:12px">Leads B2B</b><span style="font-size:22px;opacity:.7;line-height:1.45">Nuevos clientes mayoristas e interesados en franquicias, con su estado.</span></div>
+    <div style="border:1px solid var(--line-inv);border-radius:18px;padding:36px"><b class="d" style="font-size:46px;display:block;margin-bottom:12px">Base propia</b><span style="font-size:22px;opacity:.7;line-height:1.45">Clientes identificados por local, listos para campañas y fidelización.</span></div>
+  </div>
+  <div class="foot"><span>El Parmegiano × Spark</span><span>14</span></div>
+</section>
+
+<!-- 15 CIERRE -->
+<section class="s dark" style="padding:0">
+  <img src="../assets/img/interior-punta-chica.jpg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.35">
+  <div style="position:absolute;inset:0;background:linear-gradient(90deg,#15120f 30%,rgba(21,18,15,.4))"></div>
+  <div style="position:absolute;left:120px;top:110px;right:120px">
+    <span class="lbl" style="color:var(--oro)">14 · Próximo paso</span>
+    <h2 class="d" style="font-size:140px;margin:30px 0 40px">¿Arrancamos con<br>un <em>piloto?</em></h2>
+    <p class="lead" style="font-size:32px;max-width:28em">Una reunión de relevamiento en casa central, y en 30 días Parme atiende en dos locales con conversaciones reales. La propuesta económica la armamos a medida después de esa reunión.</p>
+  </div>
+  <div style="position:absolute;left:120px;right:120px;bottom:90px;display:flex;justify-content:space-between;align-items:end">
+    <div style="display:flex;align-items:center;gap:28px"><img src="shots/spark-logo.png" style="width:200px"></div>
+    <div style="text-align:right;font-family:var(--mono);font-size:20px;letter-spacing:.08em;line-height:1.8;opacity:.85">sparkdigital.agency<br>cal.com/spark/intro</div>
+  </div>
+</section>
+
+</body>
+</html>
